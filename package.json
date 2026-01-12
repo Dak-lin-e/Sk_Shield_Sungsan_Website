@@ -35,7 +35,6 @@
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.18",
     "vite": "^6.3.5"
-  },
-  "homepage": "https://{깃허브_유저이름}.github.io/{레포지토리_이름}",
+  }
 
 }
