@@ -9,7 +9,7 @@ export default function Header() {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between min-h-[80px]">
         {/* 로고 */}
         <div className="flex items-center h-full flex-shrink-0">
-          <div className="h-20 overflow-hidden">
+          <div className="h-16 overflow-hidden">
             <img 
               src="./image_file/헤더-로고.jpg" 
               alt="ADT 캡스 로고" 
