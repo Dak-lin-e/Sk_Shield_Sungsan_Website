@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 
 export default function TemplateSection() {
+  const [activeCard, setActiveCard] = useState(null);
+
   const templates = [
     {
       id: 1,
@@ -41,7 +43,6 @@ export default function TemplateSection() {
         '내,외부인원의 출입권한 통제 관리(일반문,자동문, E/L)',
         '내부직원을 위한 다양한 인증 방식',
         '외부인을 위한 다양한 호출 방식'
-    
       ]
     },
     {
@@ -58,6 +59,10 @@ export default function TemplateSection() {
       ]
     },
   ];
+
+  const handleCardClick = (id) => {
+    setActiveCard(activeCard === id ? null : id);
+  };
 
   return (
     <section id="template" className="w-full py-20 bg-gray-50">
@@ -87,20 +92,28 @@ export default function TemplateSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               className="group cursor-pointer"
+              onClick={() => handleCardClick(template.id)}
             >
-              <div className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+              <div className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl active:shadow-md transition-all duration-300 transform hover:scale-105 active:scale-95">
                 {/* 이미지 */}
                 <div className="aspect-video bg-gradient-to-br from-gray-300 to-gray-400 overflow-hidden">
                   <img
                     src={template.image}
                     alt={template.name}
-                    className="w-full h-full object-cover group-hover:scale-110 group-hover:blur-sm transition-all duration-300"
+                    className={`w-full h-full object-cover group-hover:scale-110 group-hover:blur-sm transition-all duration-300 ${
+                      activeCard === template.id ? 'scale-110 blur-sm' : ''
+                    }`}
                   />
-                
 
-                {/* 호버 시 상세 설명 오버레이 */}
-                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6">
+                  {/* 호버/터치 시 상세 설명 오버레이 */}
+                  <div className={`absolute inset-0 bg-black/60 transition-opacity duration-300 flex items-center justify-center p-6 ${
+                    activeCard === template.id 
+                      ? 'opacity-100' 
+                      : 'opacity-0 group-hover:opacity-100'
+                  }`}>
                     <div className="text-center text-white">
                       <h4 className="text-2xl font-bold mb-6">{template.name}</h4>
                       
@@ -109,22 +122,36 @@ export default function TemplateSection() {
                         {template.detailDescription.map((item, idx) => (
                           <div key={idx} className="flex items-center justify-start text-left">
                             <span className="text-yellow-400 mr-3 text-lg">•</span>
-                            <span className="text-base leading-relaxed">{item}</span>
+                            <span className="text-sm sm:text-base leading-relaxed">{item}</span>
                           </div>
                         ))}
                       </div>
                       
-                      <div className="flex items-center justify-center gap-2 bg-white/20 px-4 py-2 rounded-full">
-                        <span className="font-semibold">자세히 보기</span>
-                        <ArrowRight className="w-5 h-5" />
+                      <div className="flex items-center justify-center gap-2 bg-white/20 px-4 py-2 rounded-full hover:bg-white/30 active:bg-white/40 transition-colors duration-200">
+                        <span className="font-semibold text-sm sm:text-base">
+                          {activeCard === template.id ? '닫기' : '자세히 보기'}
+                        </span>
+                        <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                       </div>
                     </div>
                   </div>
                 </div>
+                
                 {/* 텍스트 정보 */}
-                <div className="p-6 bg-white">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">{template.name}</h3>
-                  <p className="text-gray-600">{template.description}</p>
+                <div className="p-6 bg-white hover:bg-gray-50 active:bg-gray-100 transition-colors duration-300">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2 hover:text-gray-700 active:text-gray-800 transition-colors duration-300">
+                    {template.name}
+                  </h3>
+                  <p className="text-gray-600 hover:text-gray-700 active:text-gray-800 transition-colors duration-300">
+                    {template.description}
+                  </p>
+                  
+                  {/* 모바일용 터치 안내 */}
+                  {/* <div className="mt-3 md:hidden">
+                    <p className="text-xs text-gray-500">
+                      💡 상세 정보
+                    </p>
+                  </div> */}
                 </div>
               </div>
             </motion.div>

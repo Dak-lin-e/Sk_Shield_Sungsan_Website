@@ -15,39 +15,39 @@ export default function Footer() {
           viewport={{ once: true }}
           className="mb-8"
         >
-            <div className="flex flex-col lg:flex-row justify-between items-start">
-          <h3 className="font-bold text-2xl text-white mb-4">ADT 캡스 성산대리점</h3>
-          
-          <div className="space-y-2 text-sm text-gray-600 leading-relaxed">
-            <p>
-              {/* 주소 : 경기 오산시 수청로몰38번길 33 첨단 테라타워 CMC 8층 201호 주식회사판다  */}
-              대표자 : 박현석 사업자 등록번호 : 189-01-03869 전화 : 1588-6400
-            </p>
-            <p>
-             이메일 : phs7730@hanmail.net  
+          <div className="flex flex-col lg:flex-row justify-between items-start">
+            {/* 왼쪽 - 회사 정보 */}
+            <div className="flex-1 mb-6 lg:mb-0">
+              <h3 className="font-bold text-2xl text-white mb-4">ADT 캡스 성산대리점</h3>
               
-            </p>
-          </div>
-          {/* 오른쪽 - 로고들 */}
-            <div className="flex items-center gap-6 lg:ml-8 self-end lg:self-start w-full lg:w-auto justify-end">
+              <div className="space-y-1 text-sm text-gray-300 leading-tight">
+                <p>대표자 : 박현석</p>
+                <p>사업자 등록번호 : 189-01-03869</p>
+                <p>전화 : 1588-6400</p>
+                <p>이메일 : phs7730@hanmail.net</p>
+              </div>
+            </div>
+
+            {/* 오른쪽 - 로고들 */}
+            <div className="flex items-center gap-4 lg:gap-6 lg:ml-8 self-end lg:self-start w-full lg:w-auto justify-end">
               <motion.img
                 src="./image_file/sk 쉴더스 로고.webp"
                 alt="SK 쉴더스 로고"
-                className="h-16 object-contain hover:scale-105 transition-transform duration-200"
+                className="h-12 sm:h-14 lg:h-16 object-contain hover:scale-105 transition-transform duration-200"
                 whileHover={{ scale: 1.05 }}
               />
               <motion.img
                 src="./image_file/캡스.png"
                 alt="캡스 로고"
-                className="h-16 object-contain hover:scale-105 transition-transform duration-200"
+                className="h-12 sm:h-14 lg:h-16 object-contain hover:scale-105 transition-transform duration-200"
                 whileHover={{ scale: 1.05 }}
               />
             </div>
-            </div>
+          </div>
         </motion.div>
 
         {/* 구분선 */}
-        <div className="border-t border-gray-300 my-8"></div>
+        <div className="border-t border-gray-700 my-8"></div>
 
         {/* 하단 섹션 */}
         <motion.div
@@ -55,36 +55,37 @@ export default function Footer() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="flex flex-col sm:flex-row justify-between items-start sm:items-center"
+          className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4"
         >
-          <div className="flex items-center mb-4 sm:mb-0">
-            <p className="text-sm text-gray-600 mr-4">
+          <div className="flex items-center">
+            <p className="text-sm text-gray-400">
               Copyright © 
-              <a href="#" className="text-blue-600 hover:text-blue-800 transition-colors mx-1">
+              <a href="#" className="text-blue-400 hover:text-blue-300 transition-colors mx-1">
                 sk shieldus
               </a>
               All rights reserved. Hosting by JH
             </p>
           </div>
 
-          <div className="flex items-center gap-2 text-sm">
-            <a href="#" className="text-gray-600 hover:text-red-700 transition-colors">
+          {/* 메뉴 링크들 */}
+          <div className="flex flex-wrap items-center gap-1 sm:gap-2 text-sm">
+            <a href="#" className="text-gray-400 hover:text-red-400 transition-colors px-1">
               홈
             </a>
-            <span className="text-gray-400">|</span>
-            <a href="#" className="text-gray-600 hover:text-red-700 transition-colors">
+            <span className="text-gray-600">|</span>
+            <a href="#" className="text-gray-400 hover:text-red-400 transition-colors px-1">
               개인정보처리방침
             </a>
-            <span className="text-gray-400">|</span>
-            <a href="#" className="text-gray-600 hover:text-gray-800 transition-colors">
+            <span className="text-gray-600">|</span>
+            <a href="#" className="text-gray-400 hover:text-gray-300 transition-colors px-1">
               이용약관
             </a>
-            <span className="text-gray-400">|</span>
-            <a href="#" className="text-gray-600 hover:text-gray-800 transition-colors">
+            <span className="text-gray-600">|</span>
+            <a href="#" className="text-gray-400 hover:text-gray-300 transition-colors px-1">
               이용안내
             </a>
-            <span className="text-gray-400">|</span>
-            <a href="#" className="text-gray-600 hover:text-gray-800 transition-colors">
+            <span className="text-gray-600">|</span>
+            <a href="#" className="text-gray-400 hover:text-gray-300 transition-colors px-1">
               관리자
             </a>
           </div>

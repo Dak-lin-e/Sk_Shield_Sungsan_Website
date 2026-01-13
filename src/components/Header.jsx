@@ -6,34 +6,14 @@ export default function Header() {
 
   return (
     <header className="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100" style={{ backgroundColor: '#f8f9fa' }}>
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between h-25">
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between min-h-[80px]">
         {/* 로고 */}
-        {/* <div className="flex items-center gap-6">
-          <img src="./image_file/캡스.png" 
-          className="w-20 h-20 object-contain rounded-lg hover:scale-105 hover:rotate-3 transition-transform duration-200 cursor-pointer" />
-           <div className="flex items-center">
-            <span className="font-black text-2xl tracking-tight" style={{
-              fontFamily: '"Helvetica Neue", Arial, sans-serif',
-              color: '#1e3a8a',
-              letterSpacing: '-0.5px'
-            }}>
-              ADT
-            </span>
-            <span className="font-black text-2xl tracking-tight ml-1" style={{
-              fontFamily: '"Helvetica Neue", Arial, sans-serif',
-              color: '#1e3a8a',
-              letterSpacing: '-0.5px'
-            }}>
-              캡스
-            </span>
-          </div>
-        </div> */}
-        <div className="flex items-center h-full">
-          <div className="h-22 overflow-hidden">
+        <div className="flex items-center h-full flex-shrink-0">
+          <div className="h-20 overflow-hidden">
             <img 
               src="./image_file/헤더-로고.jpg" 
               alt="ADT 캡스 로고" 
-              className="h-full w-auto object-contain cursor-pointer " 
+              className="h-full w-auto object-contain cursor-pointer" 
               style={{ 
                 backgroundColor: '#f8f9fa',
                 mixBlendMode: 'multiply'
@@ -42,24 +22,32 @@ export default function Header() {
           </div>
         </div>
 
+        {/* 데스크톱 메뉴 - 화면 크기에 따라 조정 */}
+        <div className="hidden lg:flex items-center gap-6 xl:gap-8">
+          <a href="#about" className="text-gray-700 hover:text-gray-900 font-medium text-sm xl:text-base whitespace-nowrap">ADT캡스 무인경비</a>
+          <a href="#template" className="text-gray-700 hover:text-gray-900 font-medium text-sm xl:text-base whitespace-nowrap">키오스크</a>
+          <a href="#pricing" className="text-gray-700 hover:text-gray-900 font-medium text-sm xl:text-base whitespace-nowrap">테이블오더</a>
+          <a href="#support" className="text-gray-700 hover:text-gray-900 font-medium text-sm xl:text-base whitespace-nowrap">클린케어</a>
+          <a href="#support" className="text-gray-700 hover:text-gray-900 font-medium text-sm xl:text-base whitespace-nowrap">사이버가드</a>
+        </div>
 
-        {/* 데스크톱 메뉴 */}
-        <div className="hidden md:flex items-center gap-8">
-          <a href="#about" className="text-gray-700 hover:text-gray-900 font-medium">ADT캡스 무인경비</a>
-          <a href="#template" className="text-gray-700 hover:text-gray-900 font-medium">키오스크</a>
-          <a href="#pricing" className="text-gray-700 hover:text-gray-900 font-medium">테이블오더</a>
-          <a href="#support" className="text-gray-700 hover:text-gray-900 font-medium">클린케어</a>
-          <a href="#support" className="text-gray-700 hover:text-gray-900 font-medium">사이버가드</a>
+        {/* 태블릿용 축약 메뉴 */}
+        <div className="hidden md:flex lg:hidden items-center gap-4">
+          <a href="#about" className="text-gray-700 hover:text-gray-900 font-medium text-sm whitespace-nowrap">무인경비</a>
+          <a href="#template" className="text-gray-700 hover:text-gray-900 font-medium text-sm whitespace-nowrap">키오스크</a>
+          <a href="#pricing" className="text-gray-700 hover:text-gray-900 font-medium text-sm whitespace-nowrap">테이블오더</a>
+          <a href="#support" className="text-gray-700 hover:text-gray-900 font-medium text-sm whitespace-nowrap">클린케어</a>
+            <a href="#support" className="text-gray-700 hover:text-gray-900 font-medium text-sm whitespace-nowrap">사이버가드</a>
         </div>
 
         {/* 버튼 */}
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden md:flex items-center gap-3 lg:gap-4 flex-shrink-0">
           <button 
-            onClick={() => window.open('010-3605-9528')}
-            className="w-12 h-12 p-0 border-0 bg-green-500 hover:bg-green-600 rounded-full overflow-hidden transition-all duration-200 hover:scale-105 shadow-md hover:shadow-lg flex items-center justify-center"
+            onClick={() => window.open('tel:010-3605-9528')}
+            className="w-10 h-10 lg:w-12 lg:h-12 p-0 border-0 bg-green-500 hover:bg-green-600 rounded-full overflow-hidden transition-all duration-200 hover:scale-105 shadow-md hover:shadow-lg flex items-center justify-center"
           >
             <svg 
-              className="w-6 h-6 text-white" 
+              className="w-5 h-5 lg:w-6 lg:h-6 text-white" 
               fill="none" 
               stroke="currentColor" 
               viewBox="0 0 24 24"
@@ -74,7 +62,7 @@ export default function Header() {
           </button>
           <button 
             onClick={() => window.open('https://open.kakao.com/o/sqkx5Nai')}
-            className="w-12 h-12 p-0 border-0 bg-transparent rounded-full overflow-hidden transition-transform duration-200 hover:scale-105 shadow-md hover:shadow-lg"
+            className="w-10 h-10 lg:w-12 lg:h-12 p-0 border-0 bg-transparent rounded-full overflow-hidden transition-transform duration-200 hover:scale-105 shadow-md hover:shadow-lg"
           >
             <img 
               src="./image_file/카톡.png" 
@@ -87,7 +75,7 @@ export default function Header() {
         {/* 모바일 메뉴 버튼 */}
         <button 
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden"
+          className="md:hidden flex-shrink-0"
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -95,15 +83,16 @@ export default function Header() {
 
       {/* 모바일 메뉴 */}
       {isOpen && (
-        <div className="md:hidden border-t border-gray-100 bg-white">
+        <div className="md:hidden border-t border-gray-100 bg-white" style={{ backgroundColor: '#f8f9fa' }}>
           <div className="px-4 py-4 space-y-4">
-            <a href="#about" className="block text-gray-700 hover:text-gray-900 font-medium">CCTV</a>
-            <a href="#template" className="block text-gray-700 hover:text-gray-900 font-medium">무인경비 시스템</a>
-            <a href="#pricing" className="block text-gray-700 hover:text-gray-900 font-medium">화재안심 솔루션</a>
-            <a href="#support" className="block text-gray-700 hover:text-gray-900 font-medium">캡스 클린케어</a>
+            <a href="#about" className="block text-gray-700 hover:text-gray-900 font-medium">ADT캡스 무인경비</a>
+            <a href="#template" className="block text-gray-700 hover:text-gray-900 font-medium">키오스크</a>
+            <a href="#pricing" className="block text-gray-700 hover:text-gray-900 font-medium">테이블오더</a>
+            <a href="#support" className="block text-gray-700 hover:text-gray-900 font-medium">클린케어</a>
+            <a href="#support" className="block text-gray-700 hover:text-gray-900 font-medium">사이버가드</a>
             <div className="flex items-center justify-center gap-4 pt-4">
               <button 
-                onClick={() => window.open('tel:010-2315-7491')}
+                onClick={() => window.open('tel:010-3605-9528')}
                 className="w-12 h-12 p-0 border-0 bg-green-500 hover:bg-green-600 rounded-full overflow-hidden transition-all duration-200 hover:scale-105 shadow-md hover:shadow-lg flex items-center justify-center"
               >
                 <svg 

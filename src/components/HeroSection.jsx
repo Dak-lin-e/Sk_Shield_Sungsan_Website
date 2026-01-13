@@ -18,7 +18,7 @@ export default function HeroSection() {
 
   // 전화 연결 함수
   const makePhoneCall = () => {
-    window.open('010-8638-9528');
+    window.open('tel:010-3605-9528');
   };
 
   // ADT 캡스 유튜브 영상 링크 함수
@@ -27,14 +27,14 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="w-full min-h-screen relative bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center pt-20">
+    <section className="w-full h-[70vh] sm:h-[80vh] lg:h-screen relative bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center pt-20">
       {/* 배경 이미지 */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: 'url(/image_file/출입보안.png)',
-          backgroundSize: '100% 100%',
-
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
         }}
       >
         {/* 오버레이 (텍스트 가독성을 위해) */}
@@ -43,30 +43,18 @@ export default function HeroSection() {
 
       {/* 콘텐츠 */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
-        <div className="flex flex-col items-center justify-center min-h-screen">
-          {/* 상단 태그 */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-8"
-          >
-            {/* <p className="text-sm text-white font-medium tracking-wider">
-              사진출처 : 티앤캡스
-            </p> */}
-          </motion.div>
-
+        <div className="flex flex-col items-center justify-center h-full py-4 sm:py-8">
           {/* 메인 제목 */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-center mb-12"
+            className="text-center mb-4 sm:mb-8"
           >
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-4">
-              <span className="block mb-2">ADT 캡스</span>
-              <span className="block mb-4">통합 보안</span>
-              <span className="block mb-4 text-gray-200">시스템</span>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-2 sm:mb-4">
+              <span className="block mb-1">ADT 캡스</span>
+              <span className="block mb-1 sm:mb-2">통합 보안</span>
+              <span className="block text-gray-200">시스템</span>
             </h1>
           </motion.div>
 
@@ -75,11 +63,11 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col sm:flex-row gap-4 mb-12"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-4 sm:mb-8 items-center justify-center"
           >
             <button 
               onClick={makePhoneCall}
-              className="bg-white hover:bg-gray-100 text-black px-8 py-4 text-lg font-bold rounded transition-all duration-300 transform hover:scale-105 min-w-[240px] flex items-center justify-center gap-2"
+              className="bg-white hover:bg-gray-100 text-black px-8 py-4 text-lg font-bold rounded transition-all duration-300 transform hover:scale-105 w-[240px] h-[56px] flex items-center justify-center gap-2"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/>
@@ -88,12 +76,12 @@ export default function HeroSection() {
             </button>
             <button 
               onClick={openAdtCapsVideo}
-              className="border-2 border-white text-white hover:bg-white hover:text-black px-8 py-4 text-lg font-bold rounded transition-all duration-300 transform hover:scale-105 min-w-[240px] flex items-center justify-center gap-2"
+              className="border-2 border-white text-white hover:bg-white hover:text-black px-6 py-4 text-base font-bold rounded transition-all duration-300 transform hover:scale-105 w-[240px] h-[56px] flex items-center justify-center gap-2 whitespace-nowrap"
             >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M8 5v14l11-7z"/>
               </svg>
-              ADT 캡스 영상보기
+              <span className="truncate">ADT 캡스 영상보기</span>
             </button>
           </motion.div>
 
@@ -102,15 +90,15 @@ export default function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="mt-20"
+            className="mt-2 sm:mt-8"
           >
             <motion.div
               animate={{ y: [0, 10, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
               className="flex flex-col items-center gap-2"
             >
-              <span className="text-white text-sm font-medium">Scroll to explore</span>
-              <svg className="w-6 h-6 text-white" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+              <span className="text-white text-xs sm:text-sm font-medium">Scroll to explore</span>
+              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
                 <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
               </svg>
             </motion.div>

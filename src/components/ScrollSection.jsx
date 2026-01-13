@@ -24,7 +24,7 @@ export default function ScrollSection() {
   }, []);
 
   const makePhoneCall = () => {
-  window.open('010-3605-9528');
+  window.open('tel:010-3605-9528');
 };
 
   return (
@@ -64,7 +64,7 @@ export default function ScrollSection() {
                   1
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-gray-900 group-hover:text-blue-900 transition-colors duration-300">대리점 직접 문의 (강력 추천)</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 group-hover:text-blue-900 transition-colors duration-300">대리점 직접 문의</h3>
                   <p className="text-blue-600 group-hover:text-blue-700 transition-colors duration-300">가장 좋은 조건으로 설치하세요!</p>
                 </div>
               </div>
