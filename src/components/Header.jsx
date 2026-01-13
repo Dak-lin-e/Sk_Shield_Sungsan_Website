@@ -6,10 +6,10 @@ export default function Header() {
 
   return (
     <header className="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100" style={{ backgroundColor: '#f8f9fa' }}>
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between min-h-[80px]">
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 md:py-4 flex items-center justify-between min-h-[64px] md:min-h-[80px]">
         {/* 로고 */}
         <div className="flex items-center h-full flex-shrink-0">
-          <div className="h-16 overflow-hidden">
+          <div className="h-12 md:h-16 overflow-hidden">
             <img 
               src="./image_file/헤더-로고.jpg" 
               alt="ADT 캡스 로고" 
@@ -32,22 +32,21 @@ export default function Header() {
         </div>
 
         {/* 태블릿용 축약 메뉴 */}
-        <div className="hidden md:flex lg:hidden items-center gap-4">
+        <div className="hidden md:flex lg:hidden items-center gap-3">
           <a href="#about" className="text-gray-700 hover:text-gray-900 font-medium text-sm whitespace-nowrap">무인경비</a>
           <a href="#template" className="text-gray-700 hover:text-gray-900 font-medium text-sm whitespace-nowrap">키오스크</a>
           <a href="#pricing" className="text-gray-700 hover:text-gray-900 font-medium text-sm whitespace-nowrap">테이블오더</a>
           <a href="#support" className="text-gray-700 hover:text-gray-900 font-medium text-sm whitespace-nowrap">클린케어</a>
-            <a href="#support" className="text-gray-700 hover:text-gray-900 font-medium text-sm whitespace-nowrap">사이버가드</a>
         </div>
 
         {/* 버튼 */}
-        <div className="hidden md:flex items-center gap-3 lg:gap-4 flex-shrink-0">
+        <div className="hidden md:flex items-center gap-2 lg:gap-4 flex-shrink-0">
           <button 
             onClick={() => window.open('tel:010-3605-9528')}
-            className="w-10 h-10 lg:w-12 lg:h-12 p-0 border-0 bg-green-500 hover:bg-green-600 rounded-full overflow-hidden transition-all duration-200 hover:scale-105 shadow-md hover:shadow-lg flex items-center justify-center"
+            className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 p-0 border-0 bg-green-500 hover:bg-green-600 rounded-full overflow-hidden transition-all duration-200 hover:scale-105 shadow-md hover:shadow-lg flex items-center justify-center"
           >
             <svg 
-              className="w-5 h-5 lg:w-6 lg:h-6 text-white" 
+              className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-white" 
               fill="none" 
               stroke="currentColor" 
               viewBox="0 0 24 24"
@@ -61,8 +60,8 @@ export default function Header() {
             </svg>
           </button>
           <button 
-            onClick={() => window.open('https://open.kakao.com/o/sqkx5Nai')}
-            className="w-10 h-10 lg:w-12 lg:h-12 p-0 border-0 bg-transparent rounded-full overflow-hidden transition-transform duration-200 hover:scale-105 shadow-md hover:shadow-lg"
+            onClick={() => window.open('https://open.kakao.com/o/sIBSxkbi')}
+            className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 p-0 border-0 bg-transparent rounded-full overflow-hidden transition-transform duration-200 hover:scale-105 shadow-md hover:shadow-lg"
           >
             <img 
               src="./image_file/카톡.png" 
@@ -77,26 +76,26 @@ export default function Header() {
           onClick={() => setIsOpen(!isOpen)}
           className="md:hidden flex-shrink-0"
         >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+          {isOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
       </nav>
 
       {/* 모바일 메뉴 */}
       {isOpen && (
         <div className="md:hidden border-t border-gray-100 bg-white" style={{ backgroundColor: '#f8f9fa' }}>
-          <div className="px-4 py-4 space-y-4">
-            <a href="#about" className="block text-gray-700 hover:text-gray-900 font-medium">ADT캡스 무인경비</a>
-            <a href="#template" className="block text-gray-700 hover:text-gray-900 font-medium">키오스크</a>
-            <a href="#pricing" className="block text-gray-700 hover:text-gray-900 font-medium">테이블오더</a>
-            <a href="#support" className="block text-gray-700 hover:text-gray-900 font-medium">클린케어</a>
-            <a href="#support" className="block text-gray-700 hover:text-gray-900 font-medium">사이버가드</a>
-            <div className="flex items-center justify-center gap-4 pt-4">
+          <div className="px-4 py-3 space-y-3">
+            <a href="#about" className="block text-gray-700 hover:text-gray-900 font-medium text-sm">ADT캡스 무인경비</a>
+            <a href="#template" className="block text-gray-700 hover:text-gray-900 font-medium text-sm">키오스크</a>
+            <a href="#pricing" className="block text-gray-700 hover:text-gray-900 font-medium text-sm">테이블오더</a>
+            <a href="#support" className="block text-gray-700 hover:text-gray-900 font-medium text-sm">클린케어</a>
+            <a href="#support" className="block text-gray-700 hover:text-gray-900 font-medium text-sm">사이버가드</a>
+            <div className="flex items-center justify-center gap-3 pt-3">
               <button 
                 onClick={() => window.open('tel:010-3605-9528')}
-                className="w-12 h-12 p-0 border-0 bg-green-500 hover:bg-green-600 rounded-full overflow-hidden transition-all duration-200 hover:scale-105 shadow-md hover:shadow-lg flex items-center justify-center"
+                className="w-10 h-10 p-0 border-0 bg-green-500 hover:bg-green-600 rounded-full overflow-hidden transition-all duration-200 hover:scale-105 shadow-md hover:shadow-lg flex items-center justify-center"
               >
                 <svg 
-                  className="w-6 h-6 text-white" 
+                  className="w-5 h-5 text-white" 
                   fill="none" 
                   stroke="currentColor" 
                   viewBox="0 0 24 24"
@@ -110,8 +109,8 @@ export default function Header() {
                 </svg>
               </button>
               <button 
-                onClick={() => window.open('https://open.kakao.com/o/sqkx5Nai')}
-                className="w-12 h-12 p-0 border-0 bg-transparent rounded-full overflow-hidden transition-transform duration-200 hover:scale-105 shadow-md hover:shadow-lg"
+                onClick={() => window.open('https://open.kakao.com/o/sIBSxkbi')}
+                className="w-10 h-10 p-0 border-0 bg-transparent rounded-full overflow-hidden transition-transform duration-200 hover:scale-105 shadow-md hover:shadow-lg"
               >
                 <img 
                   src="./image_file/카톡.png" 
