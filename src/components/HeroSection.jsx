@@ -27,7 +27,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="w-full h-[70vh] sm:h-[80vh] lg:h-screen relative bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center pt-20">
+    <section className="w-full min-h-[85vh] sm:h-[90vh] lg:h-screen relative bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center pt-20">
       {/* 배경 이미지 */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -43,17 +43,17 @@ export default function HeroSection() {
 
       {/* 콘텐츠 */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
-        <div className="flex flex-col items-center justify-center h-full py-4 sm:py-8">
+        <div className="flex flex-col items-center justify-center h-full py-8 sm:py-12">
           {/* 메인 제목 */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-center mb-4 sm:mb-8"
+            className="text-center mb-6 sm:mb-8"
           >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-2 sm:mb-4">
-              <span className="block mb-1">ADT 캡스</span>
-              <span className="block mb-1 sm:mb-2">통합 보안</span>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-4 sm:mb-6">
+              <span className="block mb-2 sm:mb-3">ADT 캡스</span>
+              <span className="block mb-2 sm:mb-3">통합 보안</span>
               <span className="block text-gray-200">시스템</span>
             </h1>
           </motion.div>
@@ -63,7 +63,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-4 sm:mb-8 items-center justify-center"
+            className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-8 sm:mb-12 items-center justify-center"
           >
             <button 
               onClick={makePhoneCall}
@@ -90,15 +90,15 @@ export default function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="mt-2 sm:mt-8"
+            className="mt-4 sm:mt-8"
           >
             <motion.div
               animate={{ y: [0, 10, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
               className="flex flex-col items-center gap-2"
             >
-              <span className="text-white text-xs sm:text-sm font-medium">Scroll to explore</span>
-              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+              <span className="text-white text-sm font-medium">Scroll to explore</span>
+              <svg className="w-6 h-6 text-white" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
                 <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
               </svg>
             </motion.div>
