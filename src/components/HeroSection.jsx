@@ -22,10 +22,13 @@ export default function HeroSection() {
   };
 
   // ADT 캡스 유튜브 영상 링크 함수
-  const openAdtCapsVideo = () => {
+  const openAdtCapsVideo1 = () => {
+    window.open('https://www.youtube.com/watch?v=MXOCO6a3Y5o', '_blank');
+  };
+    // ADT 캡스 유튜브 영상 링크 함수
+  const openAdtCapsVideo2 = () => {
     window.open('https://www.youtube.com/watch?v=zQQNhQMxst0', '_blank');
   };
-
   return (
     <section className="w-full min-h-[85vh] sm:h-[90vh] lg:h-screen relative bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center pt-20">
       {/* 배경 이미지 */}
@@ -66,6 +69,16 @@ export default function HeroSection() {
             className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-8 sm:mb-12 items-center justify-center"
           >
             <button 
+              onClick={openAdtCapsVideo1}
+              className="border-2 border-white text-white hover:bg-white hover:text-black px-6 py-4 text-base font-bold rounded transition-all duration-300 transform hover:scale-105 w-[240px] h-[56px] flex items-center justify-center gap-2 whitespace-nowrap"
+            >
+              <svg className="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+              <span className="truncate">뷰가드 AI 영상보기</span>
+            </button>
+
+            <button 
               onClick={makePhoneCall}
               className="bg-white hover:bg-gray-100 text-black px-8 py-4 text-lg font-bold rounded transition-all duration-300 transform hover:scale-105 w-[240px] h-[56px] flex items-center justify-center gap-2"
             >
@@ -75,7 +88,7 @@ export default function HeroSection() {
               상담 연결
             </button>
             <button 
-              onClick={openAdtCapsVideo}
+              onClick={openAdtCapsVideo2}
               className="border-2 border-white text-white hover:bg-white hover:text-black px-6 py-4 text-base font-bold rounded transition-all duration-300 transform hover:scale-105 w-[240px] h-[56px] flex items-center justify-center gap-2 whitespace-nowrap"
             >
               <svg className="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">

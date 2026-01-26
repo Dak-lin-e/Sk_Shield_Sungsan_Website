@@ -84,9 +84,9 @@ export default function Header() {
         {/* 모바일 메뉴 버튼 */}
         <button 
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden flex-shrink-0"
+          className="md:hidden flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-lg bg-sky-800 text-white shadow-md hover:bg-blue-700 active:scale-95 transition-all duration-200"
         >
-          {isOpen ? <X size={20} /> : <Menu size={20} />}
+          {isOpen ? <X size={22} strokeWidth={2.5} /> : <Menu size={22} strokeWidth={2.5} />}
         </button>
       </nav>
 

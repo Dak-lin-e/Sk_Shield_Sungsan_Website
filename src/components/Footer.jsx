@@ -23,7 +23,7 @@ export default function Footer() {
               <div className="space-y-1 text-sm text-gray-300 leading-tight">
                 <p>대표자 : 박현석</p>
                 <p>사업자 등록번호 : 189-01-03869</p>
-                <p>전화 : 1588-6400</p>
+                <p>전화 : 062-470-7730</p>
                 <p>이메일 : phs7730@hanmail.net</p>
               </div>
             </div>

@@ -110,7 +110,7 @@ export default function ScrollSection() {
             
             <div className="mt-6 p-4 bg-blue-100 rounded-lg group-hover:bg-blue-200 active:bg-blue-300 transition-colors duration-300">
               <p className="text-blue-800 font-semibold text-center">
-                <span className="text-blue-800 font-bold">ADT 캡스 제공서비스</span> : 무인경비 | CCTV | 무인매장솔루션 | 테이블오더 | 셀링로봇 | 키오스크 | 포스 | 카드체크기
+                <span className="text-blue-800 font-bold">ADT 캡스 제공서비스</span> : 무인경비 | CCTV | 무인매장솔루션 | 테이블오더 | 서빙로봇 | 키오스크 | 포스 | 카드체크기
               </p>
             </div>
 
