@@ -24,7 +24,7 @@ export default function TemplateSection() {
       id: 2,
       name: 'CCTV',
       description: '쉽고 빠른 영상 검색, 200만/500만 화소 고화질 AI CCTV',
-      image: '/image_file/cctv2.png',
+      image: '/image_file/cctv.jpg',
       color: 'from-blue-500 to-cyan-500',
       detailDescription: [
         '사람/차량 스마트 AI 검색',
@@ -65,7 +65,7 @@ export default function TemplateSection() {
   };
 
   return (
-    <section id="template" className="w-full py-20 bg-gray-50">
+    <section id="template" className="w-full py-20 bg-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* 제목 */}
         <motion.div

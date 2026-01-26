@@ -4,6 +4,11 @@ import { Menu, X } from 'lucide-react';
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
+  const handleMenuClick = (e) => {
+    e.preventDefault();
+    alert('페이지 준비 중입니다.');
+  };
+
   return (
     <header className="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100" style={{ backgroundColor: '#f8f9fa' }}>
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 md:py-4 flex items-center justify-between min-h-[64px] md:min-h-[80px]">
@@ -21,11 +26,11 @@ export default function Header() {
             />
           </div>
           <span 
-            className="text-sky-800 font-bold text-sm md:text-lg lg:text-xl whitespace-nowrap leading-none flex items-center h-12 md:h-16"
+            className="text-sky-800 font-bold text-base md:text-xl lg:text-xl whitespace-nowrap leading-none flex items-center h-12 md:h-16"
             style={{ 
               fontFamily: 'system-ui, -apple-system, sans-serif',
               letterSpacing: '-0.02em',
-              paddingBottom: '2px'
+              paddingBottom: '1px'
             }}
           >
             성산대리점
@@ -91,15 +96,21 @@ export default function Header() {
       </nav>
 
       {/* 모바일 메뉴 */}
-      {isOpen && (
-        <div className="md:hidden border-t border-gray-100 bg-white" style={{ backgroundColor: '#f8f9fa' }}>
-          <div className="px-4 py-3 space-y-3">
-            <a href="#about" className="block text-gray-700 hover:text-gray-900 font-medium text-sm">ADT캡스 무인경비</a>
-            <a href="#template" className="block text-gray-700 hover:text-gray-900 font-medium text-sm">키오스크</a>
-            <a href="#pricing" className="block text-gray-700 hover:text-gray-900 font-medium text-sm">테이블오더</a>
-            <a href="#support" className="block text-gray-700 hover:text-gray-900 font-medium text-sm">클린케어</a>
-            <a href="#support" className="block text-gray-700 hover:text-gray-900 font-medium text-sm">사이버가드</a>
-            <div className="flex items-center justify-center gap-3 pt-3">
+      <div 
+        className={`md:hidden border-t border-gray-100 bg-white overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
+        style={{ backgroundColor: '#f8f9fa' }}
+      >
+        <div className="px-4 py-3">
+          <a href="#about" onClick={handleMenuClick} className="block text-gray-700 hover:text-gray-900 hover:bg-gray-100 font-medium text-sm py-3 px-2 rounded-lg transition-colors duration-200">ADT캡스 무인경비</a>
+          <div className="border-b border-gray-200 mx-2"></div>
+          <a href="#template" onClick={handleMenuClick} className="block text-gray-700 hover:text-gray-900 hover:bg-gray-100 font-medium text-sm py-3 px-2 rounded-lg transition-colors duration-200">키오스크</a>
+          <div className="border-b border-gray-200 mx-2"></div>
+          <a href="#pricing" onClick={handleMenuClick} className="block text-gray-700 hover:text-gray-900 hover:bg-gray-100 font-medium text-sm py-3 px-2 rounded-lg transition-colors duration-200">테이블오더</a>
+          <div className="border-b border-gray-200 mx-2"></div>
+          <a href="#support" onClick={handleMenuClick} className="block text-gray-700 hover:text-gray-900 hover:bg-gray-100 font-medium text-sm py-3 px-2 rounded-lg transition-colors duration-200">클린케어</a>
+          <div className="border-b border-gray-200 mx-2"></div>
+          <a href="#support" onClick={handleMenuClick} className="block text-gray-700 hover:text-gray-900 hover:bg-gray-100 font-medium text-sm py-3 px-2 rounded-lg transition-colors duration-200">사이버가드</a>
+          <div className="flex items-center justify-center gap-3 pt-4 mt-2 border-t border-gray-200">
               <button 
                 onClick={() => window.open('tel:010-3605-9528')}
                 className="w-10 h-10 p-0 border-0 bg-green-500 hover:bg-green-600 rounded-full overflow-hidden transition-all duration-200 hover:scale-105 shadow-md hover:shadow-lg flex items-center justify-center"
@@ -131,7 +142,6 @@ export default function Header() {
             </div>
           </div>
         </div>
-      )}
     </header>
   );
 }

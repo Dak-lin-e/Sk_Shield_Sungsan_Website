@@ -38,7 +38,7 @@ export default function ScrollSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 whitespace-nowrap">
             ADT캡스 신규 문의 방법 안내
           </h2>
           <p className="text-lg text-gray-600">
@@ -84,17 +84,16 @@ export default function ScrollSection() {
                   </div>
                   <div>
                     <p className="text-gray-600">성산대리점</p>
-                    <p className="text-3xl font-bold text-blue-600 group-hover:text-blue-700 active:text-blue-800 transition-colors duration-300">010-3605-9528</p>
+                    <p className="text-2xl sm:text-3xl font-bold text-blue-600 group-hover:text-blue-700 active:text-blue-800 transition-colors duration-300 whitespace-nowrap">010-3605-9528</p>
                   </div>
                 </div>
                 
                 <div className="flex items-center">
-                  <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mr-4 group-hover:bg-yellow-200 active:bg-yellow-300 transition-colors duration-300">
+                  <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mr-4 group-hover:bg-yellow-200 active:bg-yellow-300 transition-colors duration-300 flex-shrink-0">
                     <span className="text-2xl">🎁</span>
                   </div>
                   <div>
-                    <p className="text-lg text-gray-900">월정료 <span className="text-blue-600 font-bold text-2xl group-hover:text-blue-700 active:text-blue-800 transition-colors duration-300">1개월 요금 </span>상당 혜택 제공</p>
-                    
+                    <p className="text-sm sm:text-lg text-gray-900 whitespace-nowrap">월정료 <span className="text-blue-600 font-bold text-lg sm:text-2xl group-hover:text-blue-700 active:text-blue-800 transition-colors duration-300">1개월 요금</span> 상당 혜택 제공</p>
                   </div>
                 </div>
               </div>
@@ -148,28 +147,24 @@ export default function ScrollSection() {
               <div className="flex-1"></div>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-              <div className="text-center md:text-left">
-                <div className="flex items-center justify-center md:justify-start mb-4">
-                  <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mr-4 hover:bg-blue-200 active:bg-blue-300 transition-colors duration-300">
-                    <span className="text-3xl">📱</span>
-                  </div>
-                  <div>
-                    <p className="text-xl font-semibold text-gray-700">고객 소개 → 대리점 문의</p>
-                    <p className="text-sm text-gray-600 mt-1">기존 고객이 새로운 고객을 소개하는 경우</p>
-                  </div>
+            <div className="space-y-6">
+              <div className="flex items-center">
+                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mr-4 hover:bg-blue-200 active:bg-blue-300 transition-colors duration-300 flex-shrink-0">
+                  <span className="text-3xl">📱</span>
+                </div>
+                <div>
+                  <p className="text-base sm:text-xl font-semibold text-gray-700 whitespace-nowrap">고객 소개 → 대리점 문의</p>
+                  <p className="text-sm text-gray-600 mt-1">기존 고객이 새로운 고객을 소개하는 경우</p>
                 </div>
               </div>
               
-              <div className="text-center md:text-right">
-                <div className="flex items-center justify-center md:justify-end">
-                  <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mr-4 hover:bg-red-200 active:bg-red-300 transition-colors duration-300">
-                    <span className="text-3xl">🎁</span>
-                  </div>
-                  <div>
-                    <p className="text-2xl font-bold text-red-600">5만원 상품권 지급</p>
-                    <p className="text-sm text-gray-600 mt-1">※ 소개자님께 지급됩니다</p>
-                  </div>
+              <div className="flex items-center">
+                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mr-4 hover:bg-red-200 active:bg-red-300 transition-colors duration-300 flex-shrink-0">
+                  <span className="text-3xl">🎁</span>
+                </div>
+                <div>
+                  <p className="text-xl sm:text-2xl font-bold text-red-600 whitespace-nowrap">5만원 상품권 지급</p>
+                  <p className="text-sm text-gray-600 mt-1">※ 소개자님께 지급됩니다</p>
                 </div>
               </div>
             </div>
