@@ -93,7 +93,7 @@ export default function ScrollSection() {
                     <span className="text-2xl">🎁</span>
                   </div>
                   <div>
-                    <p className="text-lg text-gray-900">월정료 <span className="text-blue-600 font-bold text-2xl group-hover:text-blue-700 active:text-blue-800 transition-colors duration-300">1개월 대납</span> 특별 지원</p>
+                    <p className="text-lg text-gray-900">월정료 <span className="text-blue-600 font-bold text-2xl group-hover:text-blue-700 active:text-blue-800 transition-colors duration-300">1개월 요금 </span>상당 혜택 제공</p>
                     
                   </div>
                 </div>
