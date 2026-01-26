@@ -32,7 +32,7 @@ export default function HeroSection() {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: 'url(/image_file/출입보안.png)',
+          backgroundImage: 'url(/image_file/출입보안2.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center'
         }}

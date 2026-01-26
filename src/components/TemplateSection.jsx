@@ -10,7 +10,7 @@ export default function TemplateSection() {
       id: 1,
       name: '출동경비',
       description: '이상 신호 감지 시 최단거리 차량 출동',
-      image: '/image_file/출동경비.jpg',
+      image: '/image_file/출동경비2.png',
       color: 'from-purple-500 to-pink-500',
       detailDescription: [
         '방문 맞춤컨설팅을 통한 보안설계 및 설치',
@@ -24,7 +24,7 @@ export default function TemplateSection() {
       id: 2,
       name: 'CCTV',
       description: '쉽고 빠른 영상 검색, 200만/500만 화소 고화질 AI CCTV',
-      image: '/image_file/cctv.jpg',
+      image: '/image_file/cctv2.png',
       color: 'from-blue-500 to-cyan-500',
       detailDescription: [
         '사람/차량 스마트 AI 검색',
@@ -37,7 +37,7 @@ export default function TemplateSection() {
       id: 3,
       name: '출입통제',
       description: '지문, 카드, 얼굴 인식을 이용하여 출입/근태 출입관리',
-      image: '/image_file/출입통제.png',
+      image: '/image_file/출입통제2.png',
       color: 'from-orange-500 to-red-500',
       detailDescription: [
         '내,외부인원의 출입권한 통제 관리(일반문,자동문, E/L)',
@@ -49,7 +49,7 @@ export default function TemplateSection() {
       id: 4,
       name: '캡스홈 (가정용)',
       description: '현관문 앞 영상, 얼굴인식 AI, 집안상황 실시간 확인',
-      image: '/image_file/캡스홈.png',
+      image: '/image_file/캡스홈2.png',
       color: 'from-green-500 to-emerald-500',
       detailDescription: [
         '현관 앞 상황실시간 영상 확인',

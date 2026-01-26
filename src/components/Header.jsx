@@ -8,8 +8,8 @@ export default function Header() {
     <header className="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100" style={{ backgroundColor: '#f8f9fa' }}>
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 md:py-4 flex items-center justify-between min-h-[64px] md:min-h-[80px]">
         {/* 로고 */}
-        <div className="flex items-center h-full flex-shrink-0">
-          <div className="h-12 md:h-16 overflow-hidden">
+        <div className="flex items-center h-full flex-shrink-0 gap-0.5 md:gap-0.5">
+          <div className="h-12 md:h-16 overflow-hidden flex items-center">
             <img 
               src="./image_file/헤더-로고.jpg" 
               alt="ADT 캡스 로고" 
@@ -20,6 +20,16 @@ export default function Header() {
               }}
             />
           </div>
+          <span 
+            className="text-sky-800 font-bold text-sm md:text-lg lg:text-xl whitespace-nowrap leading-none flex items-center h-12 md:h-16"
+            style={{ 
+              fontFamily: 'system-ui, -apple-system, sans-serif',
+              letterSpacing: '-0.02em',
+              paddingBottom: '2px'
+            }}
+          >
+            성산대리점
+          </span>
         </div>
 
         {/* 데스크톱 메뉴 - 화면 크기에 따라 조정 */}

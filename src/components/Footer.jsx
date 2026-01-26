@@ -61,7 +61,7 @@ export default function Footer() {
             <p className="text-sm text-gray-400">
               Copyright © 
               <a href="#" className="text-blue-400 hover:text-blue-300 transition-colors mx-1">
-                sk shieldus
+                SK Shields ADT caps 성산대리점
               </a>
               All rights reserved. Hosting by JH
             </p>
