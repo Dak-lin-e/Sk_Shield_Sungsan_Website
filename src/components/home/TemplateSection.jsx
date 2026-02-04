@@ -103,7 +103,7 @@ export default function TemplateSection() {
                   <img
                     src={template.image}
                     alt={template.name}
-                    className={`w-full h-full object-cover group-hover:scale-110 group-hover:blur-sm transition-all duration-300 ${
+                    className={`w-full h-full object-cover md:group-hover:scale-110 md:group-hover:blur-sm transition-all duration-300 ${
                       activeCard === template.id ? 'scale-110 blur-sm' : ''
                     }`}
                   />
@@ -112,7 +112,7 @@ export default function TemplateSection() {
                   <div className={`absolute inset-0 bg-black/60 transition-opacity duration-300 flex items-center justify-center p-6 ${
                     activeCard === template.id 
                       ? 'opacity-100' 
-                      : 'opacity-0 group-hover:opacity-100'
+                      : 'opacity-0 md:group-hover:opacity-100'
                   }`}>
                     <div className="text-center text-white">
                       <h4 className="text-2xl font-bold mb-6">{template.name}</h4>
@@ -127,11 +127,14 @@ export default function TemplateSection() {
                         ))}
                       </div>
                       
-                      <div className="flex items-center justify-center gap-2 bg-white/20 px-4 py-2 rounded-full hover:bg-white/30 active:bg-white/40 transition-colors duration-200">
-                        <span className="font-semibold text-sm sm:text-base">
-                          {activeCard === template.id ? '닫기' : '자세히 보기'}
-                        </span>
-                        <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                      <div 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setActiveCard(null);
+                        }}
+                        className="inline-flex items-center justify-center gap-2 bg-white/20 px-4 py-2 rounded-full hover:bg-white/30 active:bg-white/40 transition-colors duration-200"
+                      >
+                        <span className="font-semibold text-sm sm:text-base">닫기</span>
                       </div>
                     </div>
                   </div>

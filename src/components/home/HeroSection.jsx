@@ -30,7 +30,7 @@ export default function HeroSection() {
     window.open('https://www.youtube.com/watch?v=zQQNhQMxst0', '_blank');
   };
   return (
-    <section className="w-full min-h-[85vh] sm:h-[90vh] lg:h-screen relative bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center pt-20">
+    <section className="w-full min-h-[85svh] sm:h-[90dvh] lg:h-screen relative bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center pt-20">
       {/* 배경 이미지 */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -54,7 +54,7 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.1 }}
             className="text-center mb-6 sm:mb-8"
           >
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-4 sm:mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 sm:mb-6">
               <span className="block mb-2 sm:mb-3">ADT 캡스</span>
               <span className="block mb-2 sm:mb-3">통합 보안</span>
               <span className="block text-gray-200">시스템</span>

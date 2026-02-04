@@ -1,19 +1,14 @@
 import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
-
+import { Link } from 'react-router-dom';
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
-
-  const handleMenuClick = (e) => {
-    e.preventDefault();
-    alert('페이지 준비 중입니다.');
-  };
 
   return (
     <header className="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100" style={{ backgroundColor: '#f8f9fa' }}>
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 md:py-4 flex items-center justify-between min-h-[64px] md:min-h-[80px]">
         {/* 로고 */}
-        <div className="flex items-center h-full flex-shrink-0 gap-0.5 md:gap-0.5">
+        <Link to="/" className="flex items-center h-full flex-shrink-0 gap-0.5 md:gap-0.5">
           <div className="h-12 md:h-16 overflow-hidden flex items-center">
             <img 
               src="./image_file/헤더-로고.jpg" 
@@ -35,23 +30,24 @@ export default function Header() {
           >
             성산대리점
           </span>
-        </div>
+        </Link>
 
         {/* 데스크톱 메뉴 - 화면 크기에 따라 조정 */}
         <div className="hidden lg:flex items-center gap-6 xl:gap-8">
-          <a href="#about" className="text-gray-700 hover:text-gray-900 font-medium text-sm xl:text-base whitespace-nowrap">ADT캡스 무인경비</a>
-          <a href="#template" className="text-gray-700 hover:text-gray-900 font-medium text-sm xl:text-base whitespace-nowrap">키오스크</a>
-          <a href="#pricing" className="text-gray-700 hover:text-gray-900 font-medium text-sm xl:text-base whitespace-nowrap">테이블오더</a>
-          <a href="#support" className="text-gray-700 hover:text-gray-900 font-medium text-sm xl:text-base whitespace-nowrap">클린케어</a>
-          <a href="#support" className="text-gray-700 hover:text-gray-900 font-medium text-sm xl:text-base whitespace-nowrap">사이버가드</a>
+          <Link to="/security" className="text-black font-bold hover:text-gray-900 text-sm xl:text-base whitespace-nowrap">ADT캡스 무인경비</Link>
+          <Link to="/kiosk" className="text-black font-bold hover:text-gray-900 text-sm xl:text-base whitespace-nowrap">키오스크</Link>
+          <Link to="/table-order" className="text-black font-bold hover:text-gray-900 text-sm xl:text-base whitespace-nowrap">테이블오더</Link>
+          <Link to="/clean-care" className="text-black font-bold hover:text-gray-900 text-sm xl:text-base whitespace-nowrap">클린케어</Link>
+          <Link to="/cyber-guard" className="text-black font-bold hover:text-gray-900 text-sm xl:text-base whitespace-nowrap">사이버가드</Link>
         </div>
 
         {/* 태블릿용 축약 메뉴 */}
         <div className="hidden md:flex lg:hidden items-center gap-3">
-          <a href="#about" className="text-gray-700 hover:text-gray-900 font-medium text-sm whitespace-nowrap">무인경비</a>
-          <a href="#template" className="text-gray-700 hover:text-gray-900 font-medium text-sm whitespace-nowrap">키오스크</a>
-          <a href="#pricing" className="text-gray-700 hover:text-gray-900 font-medium text-sm whitespace-nowrap">테이블오더</a>
-          <a href="#support" className="text-gray-700 hover:text-gray-900 font-medium text-sm whitespace-nowrap">클린케어</a>
+          <Link to="/security" className="text-black font-bold hover:text-gray-900 text-sm whitespace-nowrap">ADT캡스 무인경비</Link>
+          <Link to="/kiosk" className="text-black font-bold hover:text-gray-900 text-sm whitespace-nowrap">키오스크</Link>
+          <Link to="/table-order" className="text-black font-bold hover:text-gray-900 text-sm whitespace-nowrap">테이블오더</Link>
+          <Link to="/clean-care" className="text-black font-bold hover:text-gray-900 text-sm whitespace-nowrap">클린케어</Link>
+          <Link to="/cyber-guard" className="text-black font-bold hover:text-gray-900 text-sm whitespace-nowrap">사이버가드</Link>
         </div>
 
         {/* 버튼 */}
@@ -101,15 +97,15 @@ export default function Header() {
         style={{ backgroundColor: '#f8f9fa' }}
       >
         <div className="px-4 py-3">
-          <a href="#about" onClick={handleMenuClick} className="block text-gray-700 hover:text-gray-900 hover:bg-gray-100 font-medium text-sm py-3 px-2 rounded-lg transition-colors duration-200">ADT캡스 무인경비</a>
+          <Link to="/security" onClick={() => setIsOpen(false)} className="block text-black font-bold hover:text-gray-900 hover:bg-gray-100 text-sm py-3 px-2 rounded-lg transition-colors duration-200">ADT캡스 무인경비</Link>
           <div className="border-b border-gray-200 mx-2"></div>
-          <a href="#template" onClick={handleMenuClick} className="block text-gray-700 hover:text-gray-900 hover:bg-gray-100 font-medium text-sm py-3 px-2 rounded-lg transition-colors duration-200">키오스크</a>
+          <Link to="/kiosk" onClick={() => setIsOpen(false)} className="block text-black font-bold hover:text-gray-900 hover:bg-gray-100 text-sm py-3 px-2 rounded-lg transition-colors duration-200">키오스크</Link>
           <div className="border-b border-gray-200 mx-2"></div>
-          <a href="#pricing" onClick={handleMenuClick} className="block text-gray-700 hover:text-gray-900 hover:bg-gray-100 font-medium text-sm py-3 px-2 rounded-lg transition-colors duration-200">테이블오더</a>
+          <Link to="/table-order" onClick={() => setIsOpen(false)} className="block text-black font-bold hover:text-gray-900 hover:bg-gray-100 text-sm py-3 px-2 rounded-lg transition-colors duration-200">테이블오더</Link>
           <div className="border-b border-gray-200 mx-2"></div>
-          <a href="#support" onClick={handleMenuClick} className="block text-gray-700 hover:text-gray-900 hover:bg-gray-100 font-medium text-sm py-3 px-2 rounded-lg transition-colors duration-200">클린케어</a>
+          <Link to="/clean-care" onClick={() => setIsOpen(false)} className="block text-black font-bold hover:text-gray-900 hover:bg-gray-100 text-sm py-3 px-2 rounded-lg transition-colors duration-200">클린케어</Link>
           <div className="border-b border-gray-200 mx-2"></div>
-          <a href="#support" onClick={handleMenuClick} className="block text-gray-700 hover:text-gray-900 hover:bg-gray-100 font-medium text-sm py-3 px-2 rounded-lg transition-colors duration-200">사이버가드</a>
+          <Link to="/cyber-guard" onClick={() => setIsOpen(false)} className="block text-black font-bold hover:text-gray-900 hover:bg-gray-100 text-sm py-3 px-2 rounded-lg transition-colors duration-200">사이버가드</Link>
           <div className="flex items-center justify-center gap-3 pt-4 mt-2 border-t border-gray-200">
               <button 
                 onClick={() => window.open('tel:010-3605-9528')}
