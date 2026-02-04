@@ -7,6 +7,16 @@
     <title>SK shieldus 성산대리점</title>
   </head>
   <body>
+    <!-- Netlify Forms용 숨겨진 폼 (빌드 시 감지용) -->
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="tel" name="phone" />
+      <select name="region"></select>
+      <input type="checkbox" name="privacy" />
+      <input type="checkbox" name="marketing" />
+      <input type="checkbox" name="sms" />
+    </form>
+
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

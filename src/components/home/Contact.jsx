@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Phone } from 'lucide-react';
+import { Phone, CheckCircle, Loader2 } from 'lucide-react';
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -15,6 +15,8 @@ export default function ContactSection() {
     sms: false,
   });
 
+  const [submitStatus, setSubmitStatus] = useState('idle'); // 'idle' | 'loading' | 'success' | 'error'
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -27,6 +29,42 @@ export default function ContactSection() {
       ...agreements,
       [e.target.name]: e.target.checked,
     });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitStatus('loading');
+
+    const formDataToSend = new FormData();
+    formDataToSend.append('form-name', 'contact');
+    formDataToSend.append('name', formData.name);
+    formDataToSend.append('phone', formData.phone);
+    formDataToSend.append('region', formData.region);
+    formDataToSend.append('privacy', agreements.privacy);
+    formDataToSend.append('marketing', agreements.marketing);
+    formDataToSend.append('sms', agreements.sms);
+
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formDataToSend).toString(),
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({ name: '', phone: '', region: '' });
+        setAgreements({ privacy: false, marketing: false, sms: false });
+        setTimeout(() => setSubmitStatus('idle'), 5000);
+      } else {
+        setSubmitStatus('error');
+        setTimeout(() => setSubmitStatus('idle'), 3000);
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitStatus('error');
+      setTimeout(() => setSubmitStatus('idle'), 3000);
+    }
   };
 
   return (
@@ -52,6 +90,7 @@ export default function ContactSection() {
                 method="POST" 
                 data-netlify="true"
                 netlify-honeypot="bot-field"
+                onSubmit={handleSubmit}
                 className="flex-1"
               >
                 <input type="hidden" name="form-name" value="contact" />
@@ -148,9 +187,12 @@ export default function ContactSection() {
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-3 rounded-full transition-colors whitespace-nowrap"
+                    disabled={submitStatus === 'loading'}
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-3 rounded-full transition-colors whitespace-nowrap disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
-                    전문상담 예약
+                    {submitStatus === 'loading' && <Loader2 className="w-4 h-4 animate-spin" />}
+                    {submitStatus === 'success' && <CheckCircle className="w-4 h-4" />}
+                    {submitStatus === 'success' ? '신청 완료!' : submitStatus === 'loading' ? '제출 중...' : '전문상담 예약'}
                   </button>
                 </div>
               </form>
