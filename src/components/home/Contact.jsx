@@ -187,8 +187,12 @@ export default function ContactSection() {
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    disabled={submitStatus === 'loading'}
-                    className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-3 rounded-full transition-colors whitespace-nowrap disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    disabled={!agreements.privacy || submitStatus === 'loading'}
+                    className={`${
+                      agreements.privacy 
+                        ? 'bg-blue-600 hover:bg-blue-700' 
+                        : 'bg-gray-500 cursor-not-allowed'
+                    } text-white font-bold px-8 py-3 rounded-full transition-colors whitespace-nowrap disabled:cursor-not-allowed flex items-center justify-center gap-2`}
                   >
                     {submitStatus === 'loading' && <Loader2 className="w-4 h-4 animate-spin" />}
                     {submitStatus === 'success' && <CheckCircle className="w-4 h-4" />}
