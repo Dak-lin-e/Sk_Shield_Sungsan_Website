@@ -84,7 +84,7 @@ export default function ScrollSection() {
                   </div>
                   <div>
                     <p className="text-gray-600">성산대리점</p>
-                    <p className="text-2xl sm:text-3xl font-bold text-blue-600 group-hover:text-blue-700 active:text-blue-800 transition-colors duration-300 whitespace-nowrap">062-470-7730</p>
+                    <p className="text-2xl sm:text-3xl font-bold text-blue-600 group-hover:text-blue-700 active:text-blue-800 transition-colors duration-300 whitespace-nowrap">1533-2089</p>
                   </div>
                 </div>
                 

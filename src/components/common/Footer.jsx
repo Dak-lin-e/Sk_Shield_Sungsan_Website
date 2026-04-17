@@ -25,7 +25,7 @@ export default function Footer() {
               <div className="space-y-1 text-sm text-gray-300 leading-tight">
                 <p>대표자 : 박현석</p>
                 <p>사업자 등록번호 : 189-01-03869</p>
-                <p>전화 : 062-470-7730</p>
+                <p>전화 : 1533-2089</p>
                 <p>이메일 : phs7730@hanmail.net</p>
               </div>
             </div>
@@ -290,7 +290,7 @@ export default function Footer() {
                     <div className="bg-gray-50 p-4 rounded-lg">
                       <ul className="space-y-1 text-gray-600">
                         <li><strong>개인정보 보호책임자:</strong> 박현석 / 대표</li>
-                        <li><strong>연락처:</strong> 062-470-7730 / phs7730@hanmail.net</li>
+                        <li><strong>연락처:</strong> 1533-2089 / phs7730@hanmail.net</li>
                         <li><strong>주소:</strong> 광주광역시 서구</li>
                       </ul>
                       <p className="mt-3 text-gray-500 text-xs">또한 개인정보 침해에 대한 신고/상담은 개인정보침해신고센터(privacy.go.kr), 경찰청, 대검찰청 등에 문의할 수 있습니다.</p>

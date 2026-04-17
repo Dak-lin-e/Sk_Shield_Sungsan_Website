@@ -45,7 +45,7 @@ export default function CyberCTA() {
               className="flex items-center justify-center gap-2 bg-white text-blue-900 hover:bg-gray-100 px-6 py-3 rounded-full font-medium transition-all whitespace-nowrap w-48"
             >
               <Phone className="w-5 h-5" />
-              062-470-7730
+              1533-2089
             </button>
             </div>
           </motion.div>

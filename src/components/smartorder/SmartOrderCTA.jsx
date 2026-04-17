@@ -32,7 +32,7 @@ export default function SmartOrderCTA() {
               className="bg-white hover:bg-gray-100 text-gray-700 px-8 py-3 rounded-full text-sm font-medium border border-gray-200 flex items-center gap-2"
             >
               <Phone className="w-4 h-4" />
-              062-470-7730
+              1533-2089
             </button>
           </div>
 {/* 

@@ -115,7 +115,7 @@ export default function ContactSection() {
                     <input
                       type="tel"
                       name="phone"
-                      placeholder="'-' 없이 입력"
+                      placeholder="전화번호 '-' 없이 입력"
                       value={formData.phone}
                       onChange={handleChange}
                       className="flex-1 min-w-[140px] px-4 py-3 bg-white border-0 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -213,7 +213,7 @@ export default function ContactSection() {
             </div>
             <div className="text-white">
               <p className="text-sm font-medium">전화상담 연결</p>
-              <p className="text-2xl font-bold">062-470-7730</p>
+              <p className="text-2xl font-bold">1533-2089</p>
             </div>
           </a>
         </div>

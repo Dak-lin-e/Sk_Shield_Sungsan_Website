@@ -124,7 +124,7 @@ export default function TemplateSection() {
                             <span className="text-yellow-400 mr-3 text-lg">•</span>
                             <span className="text-sm sm:text-base leading-relaxed">{item}</span>
                           </div>
-                        ))}
+                        ))}   
                       </div>
                       
                       <div 

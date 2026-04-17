@@ -21,7 +21,7 @@ export default function Header() {
             />
           </div>
           <span 
-            className="text-sky-800 font-bold text-base md:text-xl lg:text-xl whitespace-nowrap leading-none flex items-center h-12 md:h-16"
+            className="text-sky-800 font-black text-base md:text-xl lg:text-xl whitespace-nowrap leading-none flex items-center h-12 md:h-16"
             style={{ 
               fontFamily: 'system-ui, -apple-system, sans-serif',
               letterSpacing: '-0.02em',
