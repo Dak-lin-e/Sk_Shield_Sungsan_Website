@@ -1,100 +1,68 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
+import { CONTACT } from '../../constants/contact';
+import { DarkTexture } from '../ui/Section';
+
+const linkClass = 'rounded px-1 text-white/60 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent';
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
 
+  useEffect(() => {
+    if (!isPrivacyOpen) return;
+    const onKey = (e) => e.key === 'Escape' && setIsPrivacyOpen(false);
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [isPrivacyOpen]);
+
   return (
-    <footer className="w-full bg-gray-900 text-gray-800 border-t border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* 상단 섹션 - 회사 정보 */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="mb-8"
-        >
-          <div className="flex flex-col lg:flex-row justify-between items-start">
-            {/* 왼쪽 - 회사 정보 */}
-            <div className="flex-1 mb-6 lg:mb-0">
-              <h3 className="font-bold text-2xl text-white mb-4">ADT 캡스 성산대리점</h3>
-              
-              <div className="space-y-1 text-sm text-gray-300 leading-tight">
-                <p>대표자 : 박현석</p>
-                <p>사업자 등록번호 : 189-01-03869</p>
-                <p>전화 : 1533-2089</p>
-                <p>이메일 : phs7730@hanmail.net</p>
-              </div>
-            </div>
-
-            {/* 오른쪽 - 로고들 */}
-            <div className="flex items-center gap-4 lg:gap-6 lg:ml-8 self-end lg:self-start w-full lg:w-auto justify-end">
-              <motion.img
-                src="./image_file/sk 쉴더스 로고.webp"
-                alt="SK 쉴더스 로고"
-                className="h-12 sm:h-14 lg:h-16 object-contain hover:scale-105 transition-transform duration-200"
-                whileHover={{ scale: 1.05 }}
-              />
-              <motion.img
-                src="./image_file/캡스.png"
-                alt="캡스 로고"
-                className="h-12 sm:h-14 lg:h-16 object-contain hover:scale-105 transition-transform duration-200"
-                whileHover={{ scale: 1.05 }}
-              />
-            </div>
-          </div>
-        </motion.div>
-
-        {/* 구분선 */}
-        <div className="border-t border-gray-700 my-8"></div>
-
-        {/* 하단 섹션 */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4"
-        >
-          <div className="flex items-center">
-            <p className="text-sm text-gray-400">
-              Copyright © 
-              <a href="#" className="text-blue-400 hover:text-blue-300 transition-colors mx-1">
-                SK Shields ADT caps 성산대리점
-              </a>
-              All rights reserved. Hosting by JH
-            </p>
+    <footer className="relative w-full overflow-hidden bg-foreground text-white">
+      <DarkTexture glow={false} />
+      <div className="relative mx-auto w-full max-w-6xl px-5 py-14 sm:px-6 md:py-16">
+        <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
+          <div>
+            <p className="font-mono text-xs uppercase tracking-[0.15em] text-white/50">SK shieldus · ADT CAPS</p>
+            <h3 className="mt-3 text-2xl font-bold tracking-tight">ADT 캡스 성산대리점</h3>
+            <dl className="mt-6 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 text-sm">
+              <dt className="text-white/50">대표자</dt>
+              <dd className="text-white/80">박현석</dd>
+              <dt className="text-white/50">사업자 등록번호</dt>
+              <dd className="text-white/80">189-01-03869</dd>
+              <dt className="text-white/50">전화</dt>
+              <dd>
+                <a href={CONTACT.phoneHref} className="text-white/80 hover:text-white">{CONTACT.phoneLabel}</a>
+              </dd>
+              <dt className="text-white/50">이메일</dt>
+              <dd className="text-white/80">phs7730@hanmail.net</dd>
+            </dl>
           </div>
 
-          {/* 메뉴 링크들 */}
-          <div className="flex flex-wrap items-center gap-1 sm:gap-2 text-sm">
-            <a href="#" className="text-gray-400 hover:text-red-400 transition-colors px-1">
-              홈
-            </a>
-            <span className="text-gray-600">|</span>
-            <button 
-              onClick={() => setIsPrivacyOpen(true)}
-              className="text-gray-400 hover:text-red-400 transition-colors px-1"
-            >
+          <div className="flex items-center gap-3">
+            <div className="flex h-16 items-center rounded-xl bg-white px-4">
+              <img src="/image_file/sk 쉴더스 로고.webp" alt="SK 쉴더스 로고" className="h-10 object-contain" />
+            </div>
+            <div className="flex h-16 items-center rounded-xl bg-white px-4">
+              <img src="/image_file/캡스.png" alt="캡스 로고" className="h-10 object-contain" />
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-12 flex flex-col gap-4 border-t border-white/10 pt-8 text-sm sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-white/50">
+            Copyright © SK Shields ADT caps 성산대리점. All rights reserved. Hosting by JH
+          </p>
+          <nav className="flex flex-wrap items-center gap-x-3 gap-y-2" aria-label="푸터 메뉴">
+            <Link to="/" className={linkClass}>홈</Link>
+            <button type="button" onClick={() => setIsPrivacyOpen(true)} className={`${linkClass} font-semibold text-white/80`}>
               개인정보처리방침
             </button>
-            <span className="text-gray-600">|</span>
-            <a href="#" className="text-gray-400 hover:text-gray-300 transition-colors px-1">
-              이용약관
-            </a>
-            <span className="text-gray-600">|</span>
-            <a href="#" className="text-gray-400 hover:text-gray-300 transition-colors px-1">
-              이용안내
-            </a>
-            <span className="text-gray-600">|</span>
-            <a href="#" className="text-gray-400 hover:text-gray-300 transition-colors px-1">
-              관리자
-            </a>
-          </div>
-        </motion.div>
+            <a href="#" className={linkClass}>이용약관</a>
+            <a href="#" className={linkClass}>이용안내</a>
+            <a href="#" className={linkClass}>관리자</a>
+          </nav>
+        </div>
       </div>
 
       {/* 개인정보처리방침 팝업 모달 */}
@@ -104,7 +72,7 @@ export default function Footer() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 z-[60] flex items-center justify-center bg-foreground/60 p-4 backdrop-blur-sm"
             onClick={() => setIsPrivacyOpen(false)}
           >
             <motion.div
@@ -112,19 +80,24 @@ export default function Footer() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.2 }}
-              className="bg-white rounded-lg shadow-2xl max-w-4xl w-full max-h-[85vh] overflow-hidden"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="privacy-title"
+              className="w-full max-w-4xl max-h-[85vh] overflow-hidden rounded-2xl bg-card text-foreground shadow-xl"
               onClick={(e) => e.stopPropagation()}
             >
               {/* 헤더 */}
-              <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
-                <h2 className="text-xl font-semibold text-gray-900">
+              <div className="flex items-center justify-between border-b border-border px-6 py-4">
+                <h2 id="privacy-title" className="text-lg font-bold tracking-tight md:text-xl">
                   개인정보처리방침(Privacy Policy)
                 </h2>
                 <button
+                  type="button"
                   onClick={() => setIsPrivacyOpen(false)}
-                  className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+                  aria-label="닫기"
+                  className="flex h-10 w-10 items-center justify-center rounded-xl text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                 >
-                  <X className="w-6 h-6 text-gray-500" />
+                  <X className="h-5 w-5" />
                 </button>
               </div>
 
@@ -132,7 +105,7 @@ export default function Footer() {
               <div className="px-6 py-6 overflow-y-auto max-h-[70vh] text-gray-700 leading-relaxed text-sm">
                 <div className="space-y-6">
                   {/* 서문 */}
-                  <div className="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                  <div className="rounded-xl border-l-4 border-accent bg-accent/5 p-4">
                     <p className="text-gray-800">
                       <strong>[ADT캡스(또는 SK쉴더스) 성산대리점]</strong>(이하 "대리점")은 「개인정보 보호법」 등 관련 법령을 준수하며, 고객(정보주체)의 개인정보를 보호하기 위해 다음과 같이 개인정보처리방침을 수립·공개합니다.
                     </p>

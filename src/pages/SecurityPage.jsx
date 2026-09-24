@@ -5,7 +5,7 @@ import ServiceFlow from '../components/security/ServiceFlow';
 import SmartAppSection from '../components/security/SmartAppSection';
 export default function SecurityPage() {
   return (
-    <div className="pt-20 min-h-screen">
+    <div>
       <SmartHero />
       <SolutionServices />
       <ServiceFlow />

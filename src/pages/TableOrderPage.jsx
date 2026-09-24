@@ -4,7 +4,7 @@ import SmartOrderSystem from "../components/smartorder/SmartOrderSystem";
 import SmartOrderCTA from "../components/smartorder/SmartOrderCTA";
 export default function TableOrderPage() {
   return (
-    <div className="pt-20 min-h-screen">
+    <div>
       <SmartOrderHero />
       <SmartOrderFeature />
       <SmartOrderSystem />

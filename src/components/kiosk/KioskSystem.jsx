@@ -1,97 +1,64 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Zap } from 'lucide-react';
+import Section, { SectionHeading } from '../ui/Section';
+import Card from '../ui/Card';
+import { Reveal, RevealGroup, RevealItem } from '../ui/Reveal';
 
-const products = [
-  {
-    name: '유통매장용',
-    subtitle: 'Retail & Convenience',
-    image: './image_file/유통매장용.png',
-    badgeColor: 'bg-red-500',
-  },
-  {
-    name: '베리어프리 요식업용',
-    subtitle: 'Full Service Floor',
-    image: './image_file/베리어프리.png',
-    badge: null,
-  }
-
+const PRODUCTS = [
+  { name: '유통매장용', subtitle: 'Retail & Convenience', image: '/image_file/유통매장용.png' },
+  { name: '베리어프리 요식업용', subtitle: 'Full Service Floor', image: '/image_file/베리어프리.png' },
 ];
 
-export default function SystemSection() {
+export default function KioskSystem() {
   return (
-    <section id="products" className="py-16 md:py-24 bg-gray-50">
-      <div className="max-w-6xl mx-auto px-4 md:px-6">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-12"
-        >
-          <div className="flex items-center gap-2 mb-4">
-            <Zap className="w-5 h-5 text-[#1a2b6d]" />
-            <span className="text-xs tracking-widest text-gray-500">제품 라인업</span>
-          </div>
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+    <Section id="products" tone="muted">
+      <SectionHeading
+        align="left"
+        label="제품 라인업"
+        title={
+          <>
             결제 시간 단축, 빠른 주문 처리로
-          </h2>
-          <h2 className="text-2xl md:text-3xl font-bold text-[#1a2b6d]">
-            회전율 상승이 가능한 키오스크 시스템
-          </h2>
-        </motion.div>
+            <br />
+            <span className="text-gradient">회전율 상승</span>이 가능한 키오스크 시스템
+          </>
+        }
+      />
 
-        {/* Product Cards */}
-        <div className="grid md:grid-cols-2 gap-32 md:grid-cols-2 gap-36">
-          {products.map((product, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300"
-            >
-              <div className="relative aspect-[4/4] bg-gray-100">
-                <img 
+      <RevealGroup className="grid gap-6 md:grid-cols-2 lg:gap-8">
+        {PRODUCTS.map((product, index) => (
+          <RevealItem key={product.name}>
+            <Card interactive>
+              <div className="relative aspect-square bg-[radial-gradient(circle_at_50%_40%,rgba(0,82,255,0.07),transparent_65%)]">
+                <img
                   src={product.image}
                   alt={product.name}
-                  className="w-full h-full object-contain"
+                  loading="lazy"
+                  className="h-full w-full object-contain p-8 transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                 />
-                {product.badge && (
-                  <div className={`absolute top-4 left-4 ${product.badgeColor} text-white text-xs font-medium px-3 py-1 rounded-full`}>
-                    {product.badge}
-                  </div>
-                )}
+                <span className="absolute left-5 top-5 font-mono text-xs tracking-[0.15em] text-muted-foreground">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
               </div>
-              <div className="p-5">
-                <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                  {product.name}
-                </h3>
-                <p className="text-sm text-gray-500">
-                  {product.subtitle}
-                </p>
+              <div className="flex items-center justify-between border-t border-border px-6 py-5 md:px-8">
+                <div>
+                  <h3 className="text-lg font-semibold tracking-tight md:text-xl">{product.name}</h3>
+                  <p className="mt-0.5 font-mono text-xs uppercase tracking-[0.12em] text-muted-foreground">{product.subtitle}</p>
+                </div>
               </div>
-            </motion.div>
-          ))}
-        </div>
+            </Card>
+          </RevealItem>
+        ))}
+      </RevealGroup>
 
-        {/* Info Box */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-12 bg-white rounded-2xl p-6 md:p-8 border border-gray-100"
-        >
-          <p className="text-gray-600 text-sm md:text-base leading-relaxed text-center">
-            다양한 종류의 매장에 최적화된 <span className="text-[#1a2b6d] font-semibold">구성/크기의 키오스크</span>와 고객의 사업 전반
-            <br className="hidden md:block" />
-            상담을 진행합니다.
-          </p>
-        </motion.div>
-      </div>
-    </section>
+      <Reveal className="mt-8 flex flex-col items-start gap-4 rounded-2xl border border-accent/20 bg-card p-6 shadow-sm sm:flex-row sm:items-center md:p-8">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
+          <Zap className="h-5 w-5" aria-hidden="true" />
+        </span>
+        <p className="leading-relaxed text-muted-foreground md:text-lg">
+          다양한 종류의 매장에 최적화된 <strong className="font-semibold text-foreground">구성/크기의 키오스크</strong>와 고객의 사업 전반
+          상담을 진행합니다.
+        </p>
+      </Reveal>
+    </Section>
   );
 }

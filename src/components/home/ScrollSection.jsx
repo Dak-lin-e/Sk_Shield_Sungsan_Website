@@ -1,183 +1,109 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React from 'react';
+import { Gift, Phone, Users } from 'lucide-react';
+import { CONTACT } from '../../constants/contact';
+import Section, { SectionHeading } from '../ui/Section';
+import Card, { IconTile } from '../ui/Card';
+import Button from '../ui/Button';
+import { RevealGroup, RevealItem } from '../ui/Reveal';
+
+const SERVICES = ['무인경비', 'CCTV', '무인매장솔루션', '테이블오더', '서빙로봇', '키오스크', '포스', '카드체크기'];
 
 export default function ScrollSection() {
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollElement = document.getElementById('scroll-section');
-      if (!scrollElement) return;
-
-      const elementTop = scrollElement.offsetTop;
-      const elementHeight = scrollElement.offsetHeight;
-      const windowHeight = window.innerHeight;
-      const scrollTop = window.scrollY;
-
-      const elementInView = scrollTop + windowHeight - elementTop;
-      const progress = Math.min(elementInView / (elementHeight + windowHeight), 1);
-      setScrollProgress(Math.max(progress, 0));
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const makePhoneCall = () => {
-    window.open('tel:010-3605-9528');
-  };
-
   return (
-    <section id="scroll-section" className="w-full py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* 섹션 제목 */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 whitespace-nowrap">
-            ADT캡스 신규 문의 방법 안내
-          </h2>
-          <p className="text-lg text-gray-600">
-            📢 문의 방법에 따라 <span className="text-blue-500 font-bold">혜택</span>이 달라집니다!
-          </p>
-        </motion.div>
+    <Section id="scroll-section">
+      <SectionHeading
+        label="How to contact"
+        title="ADT캡스 신규 문의 방법 안내"
+        description={
+          <>
+            문의 방법에 따라 <strong className="font-semibold text-accent">혜택</strong>이 달라집니다!
+          </>
+        }
+      />
 
-        {/* 메인 콘텐츠 영역 - 1번 대리점 직접 문의 (강력 추천) */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="mb-12 group cursor-pointer"
-          onClick={makePhoneCall}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-        >
-          {/* 통합된 카드 구조 */}
-          <div className="bg-gray-100 rounded-2xl border-2 border-blue-200 shadow-lg p-6 sm:p-8 hover:shadow-2xl active:shadow-md transition-all duration-300">
-            <div className="flex items-center mb-4">
-              <div className="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl font-bold mr-4 group-hover:bg-blue-700 active:bg-blue-800 transition-colors duration-300">
-                1
-              </div>
+      <RevealGroup className="grid grid-cols-1 gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:gap-8">
+        {/* 1. 대리점 직접 문의 — 추천 */}
+        <RevealItem>
+          <Card featured interactive className="p-7 md:p-10">
+            <div className="flex items-start justify-between gap-4">
               <div>
-                <h3 className="text-2xl font-bold text-gray-900 group-hover:text-blue-900 active:text-blue-800 transition-colors duration-300">대리점 직접 문의</h3>
-                <p className="text-blue-600 group-hover:text-blue-700 active:text-blue-800 transition-colors duration-300">가장 좋은 조건으로 설치하세요!</p>
+                <span className="font-mono text-xs uppercase tracking-[0.15em] text-accent">01 · 추천</span>
+                <h3 className="mt-2 text-2xl font-bold tracking-tight md:text-[1.75rem]">대리점 직접 문의</h3>
+                <p className="mt-1 font-medium text-accent">가장 좋은 조건으로 설치하세요!</p>
               </div>
-            </div>
-            
-            {/* 구분선 - 중간만 그어진 선 */}
-            <div className="flex items-center mb-6">
-              <div className="flex-1"></div>
-              <div className="w-300 h-px bg-blue-300 group-hover:bg-blue-400 active:bg-blue-500 transition-colors duration-300"></div>
-              <div className="flex-1"></div>
-            </div>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-              <div className="space-y-4">
-                <div className="flex items-center">
-                  <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4 group-hover:bg-green-200 active:bg-green-300 transition-colors duration-300">
-                    <span className="text-2xl">📞</span>
-                  </div>
-                  <div>
-                    <p className="text-gray-600">성산대리점</p>
-                    <p className="text-2xl sm:text-3xl font-bold text-blue-600 group-hover:text-blue-700 active:text-blue-800 transition-colors duration-300 whitespace-nowrap">1533-2089</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-center">
-                  <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mr-4 group-hover:bg-yellow-200 active:bg-yellow-300 transition-colors duration-300 flex-shrink-0">
-                    <span className="text-2xl">🎁</span>
-                  </div>
-                  <div>
-                    <p className="text-sm sm:text-lg text-gray-900 whitespace-nowrap">대리점 접수건 계약 후 <span className="text-blue-600 font-bold text-base sm:text-2xl group-hover:text-blue-700 active:text-blue-800 transition-colors duration-300">고객 맞춤 혜택</span> 제공</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="text-right lg:text-right">
-                <div className="inline-block">
-                    <p className="text-gray-500 pb-5 text-right group-hover:text-blue-700 active:text-blue-800 transition-colors duration-300">비교할수록 확실한 차이,</p>
-                  <h2 className="text-blue-600 text-[clamp(1.4rem,2vw,2.5rem)] font-bold text-3xl mb-2 group-hover:text-blue-700 active:text-blue-800 transition-colors duration-300">ADT캡스 전문대리점에서</h2>
-                  <h2 className="text-blue-600 text-[clamp(1.4rem,2vw,2.5rem)] font-bold text-3xl group-hover:text-blue-700 active:text-blue-800 transition-colors duration-300">최적의 솔루션을 만나세요.</h2>
-                </div>
-              </div>
-            </div>
-            
-            <div className="mt-6 p-4 bg-blue-100 rounded-lg group-hover:bg-blue-200 active:bg-blue-300 transition-colors duration-300">
-              <p className="text-blue-800 font-semibold text-center">
-                <span className="text-blue-800 font-bold">ADT 캡스 제공서비스</span> : 무인경비 | CCTV | 무인매장솔루션 | 테이블오더 | 서빙로봇 | 키오스크 | 포스 | 카드체크기
-              </p>
+              <IconTile icon={Phone} size="lg" />
             </div>
 
-            {/* 클릭 안내 */}
-            <div className="mt-4 text-center">
-              <p className="text-sm text-gray-500 group-hover:text-gray-700 active:text-gray-800 transition-colors duration-300">
-                💡 카드를 터치하면 바로 전화연결됩니다
-              </p>
+            <div className="mt-8 grid gap-6 sm:grid-cols-2">
+              <div className="rounded-xl bg-muted p-5">
+                <p className="text-sm text-muted-foreground">성산대리점</p>
+                <p className="font-display mt-1 text-3xl text-foreground md:text-4xl">{CONTACT.phoneLabel}</p>
+              </div>
+              <div className="rounded-xl bg-accent/5 p-5">
+                <p className="text-sm text-muted-foreground">대리점 접수건 계약 후</p>
+                <p className="mt-1 text-xl font-bold md:text-2xl">
+                  <span className="text-gradient">고객 맞춤 혜택</span> 제공
+                </p>
+              </div>
             </div>
-          </div>
-        </motion.div>
 
-        {/* 2번 고객 소개 문의 카드 - 전체 너비로 확장 */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          viewport={{ once: true }}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          className="max-w-4xl mx-auto"
-        >
-          <div className="p-8 bg-gray-100 rounded-2xl shadow-lg hover:shadow-xl active:shadow-md transition-all duration-300 border-2 border-gray-200 hover:bg-gray-50 active:bg-gray-200">
-            <div className="flex items-center mb-4">
-              <div className="bg-gray-500 text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl font-bold mr-4 hover:bg-gray-600 active:bg-gray-700 transition-colors duration-300">
-                2
+            <p className="mt-8 text-lg leading-relaxed text-muted-foreground">
+              비교할수록 확실한 차이,
+              <br />
+              <span className="font-semibold text-foreground">ADT캡스 전문대리점에서 최적의 솔루션을 만나세요.</span>
+            </p>
+
+            <Button href={CONTACT.phoneHref} size="lg" icon={Phone} arrow className="mt-8 w-full sm:w-auto">
+              지금 전화 연결하기
+            </Button>
+          </Card>
+        </RevealItem>
+
+        {/* 2. 고객 소개 문의 */}
+        <RevealItem>
+          <Card interactive className="flex flex-col p-7 md:p-10">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <span className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground">02</span>
+                <h3 className="mt-2 text-2xl font-bold tracking-tight md:text-[1.75rem]">고객 소개 문의</h3>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 hover:text-gray-700 active:text-gray-800 transition-colors duration-300">고객 소개 문의</h3>
+              <IconTile icon={Users} size="lg" tone="soft" />
             </div>
-            
-            {/* 구분선 - 중간만 그어진 선 */}
-            <div className="flex items-center mb-6">
-              <div className="flex-1"></div>
-              <div className="w-200 h-px bg-gray-400 hover:bg-gray-500 active:bg-gray-600 transition-colors duration-300"></div>
-              <div className="flex-1"></div>
-            </div>
-            
-            <div className="space-y-6">
-              <div className="flex items-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mr-4 hover:bg-blue-200 active:bg-blue-300 transition-colors duration-300 flex-shrink-0">
-                  <span className="text-3xl">📱</span>
-                </div>
-                <div>
-                  <p className="text-base sm:text-xl font-semibold text-gray-700 whitespace-nowrap">고객 소개 → 대리점 문의</p>
-                  <p className="text-sm text-gray-600 mt-1">기존 고객이 새로운 고객을 소개하는 경우</p>
-                </div>
+
+            <div className="mt-8 space-y-5">
+              <div>
+                <p className="text-lg font-semibold">고객 소개 → 대리점 문의</p>
+                <p className="mt-1 text-sm text-muted-foreground">기존 고객이 새로운 고객을 소개하는 경우</p>
               </div>
-              
-              <div className="flex items-center">
-                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mr-4 hover:bg-red-200 active:bg-red-300 transition-colors duration-300 flex-shrink-0">
-                  <span className="text-3xl">🎁</span>
+              <div className="rounded-xl border border-dashed border-accent/30 bg-accent/5 p-5">
+                <div className="flex items-center gap-3">
+                  <Gift className="h-6 w-6 text-accent" aria-hidden="true" />
+                  <p className="font-display text-2xl text-foreground md:text-3xl">5만원 상품권 지급</p>
                 </div>
-                <div>
-                  <p className="text-xl sm:text-2xl font-bold text-red-600 whitespace-nowrap">5만원 상품권 지급</p>
-                  <p className="text-sm text-gray-600 mt-1">※ 소개자님께 지급됩니다</p>
-                </div>
+                <p className="mt-2 text-sm text-muted-foreground">※ 소개자님께 지급됩니다</p>
               </div>
             </div>
-            
-            {/* 추가 설명 */}
-            <div className="mt-6 p-4 bg-yellow-100 rounded-lg">
-              <p className="text-yellow-800 font-semibold text-center">
-                💝 소개해주신 분께 감사의 마음을 담아 상품권을 드립니다!
-              </p>
-            </div>
-          </div>
-        </motion.div>
-      </div>
-    </section>
+
+            <p className="mt-auto pt-8 text-[15px] leading-relaxed text-muted-foreground">
+              소개해주신 분께 감사의 마음을 담아 상품권을 드립니다!
+            </p>
+          </Card>
+        </RevealItem>
+      </RevealGroup>
+
+      {/* 제공 서비스 */}
+      <RevealGroup className="mt-12 flex flex-col items-center gap-5 md:mt-16">
+        <RevealItem as="p" className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground">
+          ADT 캡스 제공서비스
+        </RevealItem>
+        <RevealItem as="ul" className="flex max-w-3xl flex-wrap justify-center gap-2.5">
+          {SERVICES.map(service => (
+            <li key={service} className="rounded-full border border-border bg-card px-4 py-2 text-sm font-medium shadow-sm">
+              {service}
+            </li>
+          ))}
+        </RevealItem>
+      </RevealGroup>
+    </Section>
   );
 }

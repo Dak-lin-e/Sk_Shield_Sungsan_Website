@@ -1,143 +1,125 @@
-import React, { useState } from 'react';
-import { Menu, X } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Menu, Phone, X } from 'lucide-react';
+import { CONTACT } from '../../constants/contact';
+import { cn } from '../../lib/cn';
+import Button from '../ui/Button';
+import { ConsultActions } from '../ui/Consult';
+
+const NAV_ITEMS = [
+  { to: '/security', label: 'ADT캡스 무인경비' },
+  { to: '/kiosk', label: '키오스크' },
+  { to: '/table-order', label: '테이블오더' },
+  { to: '/clean-care', label: '클린케어' },
+  { to: '/cyber-guard', label: '사이버가드' },
+];
+
+function KakaoButton({ className }) {
+  return (
+    <a
+      href={CONTACT.kakaoUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="카카오톡 상담"
+      className={cn(
+        'block h-11 w-11 shrink-0 overflow-hidden rounded-xl shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2',
+        className
+      )}
+    >
+      <img src="/image_file/카톡.png" alt="" className="h-full w-full object-cover" />
+    </a>
+  );
+}
+
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
 
   return (
-    <header className="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100" style={{ backgroundColor: '#f8f9fa' }}>
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 md:py-4 flex items-center justify-between min-h-[64px] md:min-h-[80px]">
-        {/* 로고 */}
-        <Link to="/" className="flex items-center h-full flex-shrink-0 gap-0.5 md:gap-0.5">
-          <div className="h-12 md:h-16 overflow-hidden flex items-center">
-            <img 
-              src="./image_file/헤더-로고.jpg" 
-              alt="ADT 캡스 로고" 
-              className="h-full w-auto object-contain cursor-pointer" 
-              style={{ 
-                backgroundColor: '#f8f9fa',
-                mixBlendMode: 'multiply'
-              }}
-            />
-          </div>
-          <span 
-            className="text-sky-800 font-black text-base md:text-xl lg:text-xl whitespace-nowrap leading-none flex items-center h-12 md:h-16"
-            style={{ 
-              fontFamily: 'system-ui, -apple-system, sans-serif',
-              letterSpacing: '-0.02em',
-              paddingBottom: '1px'
-            }}
-          >
-            성산대리점
-          </span>
+    <header
+      className={cn(
+        'fixed inset-x-0 top-0 z-50 isolate border-b bg-white transition-shadow duration-300',
+        scrolled || isOpen ? 'border-border shadow-sm' : 'border-transparent'
+      )}
+    >
+      <nav className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-5 sm:px-6 lg:h-[72px]" aria-label="주요 메뉴">
+        <Link to="/" className="flex shrink-0 items-center gap-1 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
+          <img src="/image_file/헤더-로고.jpg" alt="ADT 캡스" className="h-11 w-auto object-contain mix-blend-multiply md:h-12" />
+          <span className="whitespace-nowrap text-base font-extrabold tracking-tight text-logo md:text-lg">성산대리점</span>
         </Link>
 
-        {/* 데스크톱 메뉴 - 화면 크기에 따라 조정 */}
-        <div className="hidden lg:flex items-center gap-6 xl:gap-8">
-          <Link to="/security" className="text-black font-bold hover:text-gray-900 text-sm xl:text-base whitespace-nowrap">ADT캡스 무인경비</Link>
-          <Link to="/kiosk" className="text-black font-bold hover:text-gray-900 text-sm xl:text-base whitespace-nowrap">키오스크</Link>
-          <Link to="/table-order" className="text-black font-bold hover:text-gray-900 text-sm xl:text-base whitespace-nowrap">테이블오더</Link>
-          <Link to="/clean-care" className="text-black font-bold hover:text-gray-900 text-sm xl:text-base whitespace-nowrap">클린케어</Link>
-          <Link to="/cyber-guard" className="text-black font-bold hover:text-gray-900 text-sm xl:text-base whitespace-nowrap">사이버가드</Link>
-        </div>
-
-        {/* 태블릿용 축약 메뉴 */}
-        <div className="hidden md:flex lg:hidden items-center gap-3">
-          <Link to="/security" className="text-black font-bold hover:text-gray-900 text-sm whitespace-nowrap">ADT캡스 무인경비</Link>
-          <Link to="/kiosk" className="text-black font-bold hover:text-gray-900 text-sm whitespace-nowrap">키오스크</Link>
-          <Link to="/table-order" className="text-black font-bold hover:text-gray-900 text-sm whitespace-nowrap">테이블오더</Link>
-          <Link to="/clean-care" className="text-black font-bold hover:text-gray-900 text-sm whitespace-nowrap">클린케어</Link>
-          <Link to="/cyber-guard" className="text-black font-bold hover:text-gray-900 text-sm whitespace-nowrap">사이버가드</Link>
-        </div>
-
-        {/* 버튼 */}
-        <div className="hidden md:flex items-center gap-2 lg:gap-4 flex-shrink-0">
-          <button 
-            onClick={() => window.open('tel:010-3605-9528')}
-            className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 p-0 border-0 bg-green-500 hover:bg-green-600 rounded-full overflow-hidden transition-all duration-200 hover:scale-105 shadow-md hover:shadow-lg flex items-center justify-center"
-          >
-            <svg 
-              className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-white" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
+        <div className="hidden items-center gap-6 lg:flex xl:gap-8">
+          {NAV_ITEMS.map(item => (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              className={({ isActive }) =>
+                cn(
+                  'relative whitespace-nowrap py-2 text-[15px] font-medium transition-colors duration-200',
+                  'after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:origin-left after:rounded-full after:bg-accent-gradient after:transition-transform after:duration-300',
+                  isActive ? 'text-foreground after:scale-x-100' : 'text-muted-foreground after:scale-x-0 hover:text-foreground hover:after:scale-x-100'
+                )
+              }
             >
-              <path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth={2} 
-                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" 
-              />
-            </svg>
-          </button>
-          <button 
-            onClick={() => window.open('https://open.kakao.com/o/sIBSxkbi')}
-            className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 p-0 border-0 bg-transparent rounded-full overflow-hidden transition-transform duration-200 hover:scale-105 shadow-md hover:shadow-lg"
-          >
-            <img 
-              src="./image_file/카톡.png" 
-              alt="kakao chat" 
-              className="w-full h-full object-cover"
-            />
-          </button>
+              {item.label}
+            </NavLink>
+          ))}
         </div>
 
-        {/* 모바일 메뉴 버튼 */}
-        <button 
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-lg bg-sky-800 text-white shadow-md hover:bg-blue-700 active:scale-95 transition-all duration-200"
+        <div className="hidden shrink-0 items-center gap-3 lg:flex">
+          <Button href={CONTACT.phoneHref} icon={Phone} className="h-11 px-5">
+            {CONTACT.phoneLabel}
+          </Button>
+          <KakaoButton />
+        </div>
+
+        <button
+          type="button"
+          onClick={() => setIsOpen(open => !open)}
+          aria-expanded={isOpen}
+          aria-controls="mobile-menu"
+          aria-label={isOpen ? '메뉴 닫기' : '메뉴 열기'}
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-border bg-card text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent lg:hidden"
         >
-          {isOpen ? <X size={22} strokeWidth={2.5} /> : <Menu size={22} strokeWidth={2.5} />}
+          {isOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </nav>
 
-      {/* 모바일 메뉴 */}
-      <div 
-        className={`md:hidden border-t border-gray-100 bg-white overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
-        style={{ backgroundColor: '#f8f9fa' }}
+      <div
+        id="mobile-menu"
+        className={cn('overflow-hidden transition-all duration-300 ease-out lg:hidden', isOpen ? 'max-h-[32rem] opacity-100' : 'max-h-0 opacity-0')}
       >
-        <div className="px-4 py-3">
-          <Link to="/security" onClick={() => setIsOpen(false)} className="block text-black font-bold hover:text-gray-900 hover:bg-gray-100 text-sm py-3 px-2 rounded-lg transition-colors duration-200">ADT캡스 무인경비</Link>
-          <div className="border-b border-gray-200 mx-2"></div>
-          <Link to="/kiosk" onClick={() => setIsOpen(false)} className="block text-black font-bold hover:text-gray-900 hover:bg-gray-100 text-sm py-3 px-2 rounded-lg transition-colors duration-200">키오스크</Link>
-          <div className="border-b border-gray-200 mx-2"></div>
-          <Link to="/table-order" onClick={() => setIsOpen(false)} className="block text-black font-bold hover:text-gray-900 hover:bg-gray-100 text-sm py-3 px-2 rounded-lg transition-colors duration-200">테이블오더</Link>
-          <div className="border-b border-gray-200 mx-2"></div>
-          <Link to="/clean-care" onClick={() => setIsOpen(false)} className="block text-black font-bold hover:text-gray-900 hover:bg-gray-100 text-sm py-3 px-2 rounded-lg transition-colors duration-200">클린케어</Link>
-          <div className="border-b border-gray-200 mx-2"></div>
-          <Link to="/cyber-guard" onClick={() => setIsOpen(false)} className="block text-black font-bold hover:text-gray-900 hover:bg-gray-100 text-sm py-3 px-2 rounded-lg transition-colors duration-200">사이버가드</Link>
-          <div className="flex items-center justify-center gap-3 pt-4 mt-2 border-t border-gray-200">
-              <button 
-                onClick={() => window.open('tel:010-3605-9528')}
-                className="w-10 h-10 p-0 border-0 bg-green-500 hover:bg-green-600 rounded-full overflow-hidden transition-all duration-200 hover:scale-105 shadow-md hover:shadow-lg flex items-center justify-center"
-              >
-                <svg 
-                  className="w-5 h-5 text-white" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={2} 
-                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" 
-                  />
-                </svg>
-              </button>
-              <button 
-                onClick={() => window.open('https://open.kakao.com/o/sIBSxkbi')}
-                className="w-10 h-10 p-0 border-0 bg-transparent rounded-full overflow-hidden transition-transform duration-200 hover:scale-105 shadow-md hover:shadow-lg"
-              >
-                <img 
-                  src="./image_file/카톡.png" 
-                  alt="kakao chat" 
-                  className="w-full h-full object-cover"
-                />
-              </button>
-            </div>
-          </div>
+        <div className="border-t border-border px-5 pb-6 pt-2">
+          {NAV_ITEMS.map(item => (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              className={({ isActive }) =>
+                cn(
+                  'flex items-center justify-between border-b border-border py-4 text-[15px] font-semibold',
+                  isActive ? 'text-accent' : 'text-foreground'
+                )
+              }
+            >
+              {item.label}
+              <span className="font-mono text-xs text-muted-foreground">→</span>
+            </NavLink>
+          ))}
+          <ConsultActions size="md" className="mt-6" />
         </div>
+      </div>
     </header>
   );
 }

@@ -5,7 +5,7 @@ import CTASection from '../components/cleancare/CTASection';
 
 export default function CleanCarePage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div>
       <CleanHero />
       <ServiceSection />
       <CTASection />

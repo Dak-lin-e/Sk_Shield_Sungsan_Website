@@ -8,7 +8,7 @@ import KioskSolution from '../components/kiosk/KioskSolution';
 
 export default function KioskPage() {
   return (
-    <div className="pt-20 min-h-screen">
+    <div>
       <KioskHero />
       <KioskSystem />
       <KioskSolution />

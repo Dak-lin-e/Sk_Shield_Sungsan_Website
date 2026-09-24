@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Phone, CheckCircle, Loader2 } from 'lucide-react';
+import { ArrowRight, CheckCircle, ChevronDown, Loader2, Phone } from 'lucide-react';
+import { CONTACT } from '../../constants/contact';
+import Section from '../ui/Section';
+import SectionLabel from '../ui/SectionLabel';
+import Button from '../ui/Button';
+import { IconTile } from '../ui/Card';
+import { Reveal } from '../ui/Reveal';
+
+const REGIONS = ['서울', '경기', '인천', '부산', '대구', '광주', '대전', '울산', '세종', '강원', '충북', '충남', '전북', '전남', '경북', '경남', '제주'];
+
+const inputClass =
+  'h-12 w-full rounded-xl border border-border bg-muted/40 px-4 text-[15px] text-foreground transition-colors placeholder:text-muted-foreground/60 hover:border-accent/30 focus:border-accent focus:bg-card focus:outline-none focus:ring-2 focus:ring-accent/20';
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -67,157 +77,123 @@ export default function ContactSection() {
     }
   };
 
+  const agreementItems = [
+    { name: 'privacy', label: '[필수] 개인정보 수집·이용 동의', required: true },
+    { name: 'marketing', label: '[선택] 마케팅 정보 제공을 위한 개인정보 수집이용 동의' },
+    { name: 'sms', label: '[선택] 마케팅 정보 수신 동의' },
+  ];
+
   return (
-    <section id="contact" className="py-0">
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="w-full"
-      >
-        <div className="bg-[#4a4a4a] flex flex-col lg:flex-row">
-          {/* Form Section */}
-          <div className="flex-1 px-6 md:px-10 py-8">
-            <div className="flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-8">
-              {/* Title */}
-              <h3 className="text-xl md:text-2xl font-bold text-white whitespace-nowrap">
-                전문상담 예약
-              </h3>
+    <Section id="contact" tone="inverted">
+      <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+        <Reveal>
+          <SectionLabel tone="dark">Consulting</SectionLabel>
+          <h2 className="font-display mt-5 text-[2rem] leading-[1.2] text-white sm:text-4xl md:text-5xl">
+            <span className="text-gradient-light">전문상담</span> 예약
+          </h2>
+          <p className="mt-5 max-w-md text-base leading-relaxed text-white/70 md:text-lg">
+            이름과 연락처를 남겨주시면 성산대리점에서 상담을 도와드려요.
+          </p>
 
-              <form 
-                name="contact" 
-                method="POST" 
-                data-netlify="true"
-                netlify-honeypot="bot-field"
-                onSubmit={handleSubmit}
-                className="flex-1"
-              >
-                <input type="hidden" name="form-name" value="contact" />
-                <p className="hidden">
-                  <label>
-                    Don't fill this out if you're human: <input name="bot-field" />
-                  </label>
-                </p>
-
-                <div className="flex flex-col lg:flex-row gap-4 lg:items-center">
-                  {/* Input Fields */}
-                  <div className="flex flex-col sm:flex-row gap-3 flex-1">
-                    <input
-                      type="text"
-                      name="name"
-                      placeholder="이름"
-                      value={formData.name}
-                      onChange={handleChange}
-                      className="flex-1 min-w-[120px] px-4 py-3 bg-white border-0 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      required
-                    />
-                    <input
-                      type="tel"
-                      name="phone"
-                      placeholder="전화번호 '-' 없이 입력"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="flex-1 min-w-[140px] px-4 py-3 bg-white border-0 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      required
-                    />
-                    <select
-                      name="region"
-                      value={formData.region}
-                      onChange={handleChange}
-                      className="flex-1 min-w-[160px] px-4 py-3 bg-white border-0 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3csvg%20xmlns%3d%22http%3a%2f%2fwww.w3.org%2f2000%2fsvg%22%20width%3d%2212%22%20height%3d%2212%22%20viewBox%3d%220%200%2012%2012%22%3e%3cpath%20fill%3d%22%23333%22%20d%3d%22M6%208L1%203h10z%22%2f%3e%3c%2fsvg%3e')] bg-no-repeat bg-[center_right_1rem]"
-                      required
-                    >
-                      <option value="">지역 선택</option>
-                      <option value="서울">서울</option>
-                      <option value="경기">경기</option>
-                      <option value="인천">인천</option>
-                      <option value="부산">부산</option>
-                      <option value="대구">대구</option>
-                      <option value="광주">광주</option>
-                      <option value="대전">대전</option>
-                      <option value="울산">울산</option>
-                      <option value="세종">세종</option>
-                      <option value="강원">강원</option>
-                      <option value="충북">충북</option>
-                      <option value="충남">충남</option>
-                      <option value="전북">전북</option>
-                      <option value="전남">전남</option>
-                      <option value="경북">경북</option>
-                      <option value="경남">경남</option>
-                      <option value="제주">제주</option>
-                    </select>
-                  </div>
-
-                  {/* Checkboxes */}
-                  <div className="flex flex-col gap-1.5 text-xs text-white/90">
-                    <label className="flex items-center gap-2 cursor-pointer">
-                      <input
-                        type="checkbox"
-                        name="privacy"
-                        checked={agreements.privacy}
-                        onChange={handleAgreementChange}
-                        className="w-4 h-4 rounded border-white/30 bg-transparent accent-blue-500"
-                        required
-                      />
-                      <span>[필수] 개인정보 수집·이용 동의 ›</span>
-                    </label>
-                    <label className="flex items-center gap-2 cursor-pointer">
-                      <input
-                        type="checkbox"
-                        name="marketing"
-                        checked={agreements.marketing}
-                        onChange={handleAgreementChange}
-                        className="w-4 h-4 rounded border-white/30 bg-transparent accent-blue-500"
-                      />
-                      <span>[선택] 마케팅 정보 제공을 위한 개인정보 수집이용 동의 ›</span>
-                    </label>
-                    <label className="flex items-center gap-2 cursor-pointer">
-                      <input
-                        type="checkbox"
-                        name="sms"
-                        checked={agreements.sms}
-                        onChange={handleAgreementChange}
-                        className="w-4 h-4 rounded border-white/30 bg-transparent accent-blue-500"
-                      />
-                      <span>[선택] 마케팅 정보 수신 동의</span>
-                    </label>
-                  </div>
-
-                  {/* Submit Button */}
-                  <button
-                    type="submit"
-                    disabled={!agreements.privacy || submitStatus === 'loading'}
-                    className={`${
-                      agreements.privacy 
-                        ? 'bg-blue-600 hover:bg-blue-700' 
-                        : 'bg-gray-500 cursor-not-allowed'
-                    } text-white font-bold px-8 py-3 rounded-full transition-colors whitespace-nowrap disabled:cursor-not-allowed flex items-center justify-center gap-2`}
-                  >
-                    {submitStatus === 'loading' && <Loader2 className="w-4 h-4 animate-spin" />}
-                    {submitStatus === 'success' && <CheckCircle className="w-4 h-4" />}
-                    {submitStatus === 'success' ? '신청 완료!' : submitStatus === 'loading' ? '제출 중...' : '전문상담 예약'}
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-
-          {/* Phone Section */}
-          <a 
-            href="tel:010-3605-9528" 
-            className="bg-blue-600 px-8 py-6 flex items-center justify-center gap-4 hover:bg-blue-700 transition-colors cursor-pointer"
+          <a
+            href={CONTACT.phoneHref}
+            className="group mt-10 flex max-w-sm items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-white/25 hover:bg-white/10"
           >
-            <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
-              <Phone className="w-6 h-6 text-white" />
-            </div>
-            <div className="text-white">
-              <p className="text-sm font-medium">전화상담 연결</p>
-              <p className="text-2xl font-bold">1533-2089</p>
-            </div>
+            <IconTile icon={Phone} />
+            <span className="flex-1">
+              <span className="block text-sm text-white/60">전화상담 연결</span>
+              <span className="font-display block text-2xl text-white md:text-3xl">{CONTACT.phoneLabel}</span>
+            </span>
+            <ArrowRight className="h-5 w-5 text-white/50 transition-transform duration-200 group-hover:translate-x-1 group-hover:text-white" aria-hidden="true" />
           </a>
-        </div>
-      </motion.div>
-    </section>
+        </Reveal>
+
+        <Reveal delay={0.1}>
+          <form
+            name="contact"
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            onSubmit={handleSubmit}
+            className="rounded-2xl bg-card p-6 text-foreground shadow-xl sm:p-8"
+          >
+            <input type="hidden" name="form-name" value="contact" />
+            <p className="hidden">
+              <label>
+                Don't fill this out if you're human: <input name="bot-field" />
+              </label>
+            </p>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              <label className="block">
+                <span className="mb-1.5 block text-sm font-medium">이름</span>
+                <input type="text" name="name" placeholder="홍길동" value={formData.name} onChange={handleChange} className={inputClass} required />
+              </label>
+              <label className="block">
+                <span className="mb-1.5 block text-sm font-medium">전화번호</span>
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="'-' 없이 입력"
+                  inputMode="numeric"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className={inputClass}
+                  required
+                />
+              </label>
+              <label className="block sm:col-span-2">
+                <span className="mb-1.5 block text-sm font-medium">지역</span>
+                <span className="relative block">
+                  <select name="region" value={formData.region} onChange={handleChange} className={`${inputClass} appearance-none pr-10`} required>
+                    <option value="">지역 선택</option>
+                    {REGIONS.map(region => (
+                      <option key={region} value={region}>
+                        {region}
+                      </option>
+                    ))}
+                  </select>
+                  <ChevronDown className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" aria-hidden="true" />
+                </span>
+              </label>
+            </div>
+
+            <fieldset className="mt-6 space-y-3 border-t border-border pt-6">
+              <legend className="sr-only">약관 동의</legend>
+              {agreementItems.map(item => (
+                <label key={item.name} className="flex cursor-pointer items-start gap-3 text-sm leading-snug text-muted-foreground">
+                  <input
+                    type="checkbox"
+                    name={item.name}
+                    checked={agreements[item.name]}
+                    onChange={handleAgreementChange}
+                    className="mt-0.5 h-4 w-4 shrink-0 cursor-pointer rounded accent-accent"
+                    required={item.required}
+                  />
+                  <span className={item.required ? 'font-medium text-foreground' : undefined}>{item.label}</span>
+                </label>
+              ))}
+            </fieldset>
+
+            <Button
+              type="submit"
+              size="lg"
+              disabled={!agreements.privacy || submitStatus === 'loading'}
+              icon={submitStatus === 'loading' ? Loader2 : submitStatus === 'success' ? CheckCircle : undefined}
+              arrow={submitStatus === 'idle' || submitStatus === 'error'}
+              className={`mt-6 w-full ${submitStatus === 'loading' ? '[&>svg:first-child]:animate-spin' : ''}`}
+            >
+              {submitStatus === 'success' ? '신청 완료!' : submitStatus === 'loading' ? '제출 중...' : '전문상담 예약'}
+            </Button>
+
+            <p className="mt-3 min-h-5 text-center text-sm" role="status" aria-live="polite">
+              {submitStatus === 'success' && <span className="text-accent">상담 신청이 접수되었어요.</span>}
+              {submitStatus === 'error' && <span className="text-red-600">제출에 실패했어요. 잠시 후 다시 시도하거나 전화로 문의해 주세요.</span>}
+              {submitStatus === 'idle' && !agreements.privacy && <span className="text-muted-foreground">필수 항목에 동의하면 예약할 수 있어요.</span>}
+            </p>
+          </form>
+        </Reveal>
+      </div>
+    </Section>
   );
 }
