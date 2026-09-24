@@ -65,8 +65,8 @@ function AdForm({ initial, onCancel, onSaved, nextOrder }) {
         ...(uploaded && { imageUrl: uploaded.url, imagePath: uploaded.path }),
       };
       if (editing) {
+        // 이전 이미지는 바로 지우지 않는다. 30일간 쓰이지 않으면 예약 함수가 정리한다.
         await updateDoc(doc(db, 'ads', initial.id), data);
-        if (uploaded) await removeImage(initial.imagePath).catch(() => {});
       } else {
         await addDoc(collection(db, 'ads'), { ...data, order: nextOrder, createdAt: serverTimestamp() });
       }
@@ -197,11 +197,8 @@ export default function AdsView() {
   };
 
   const remove = ad => {
-    if (!window.confirm(`'${ad.title}' 광고를 삭제할까요? 이미지도 함께 삭제돼요.`)) return;
-    run(ad.id, async () => {
-      await deleteDoc(doc(db, 'ads', ad.id));
-      await removeImage(ad.imagePath).catch(() => {});
-    });
+    if (!window.confirm(`'${ad.title}' 광고를 삭제할까요? 이미지 파일은 30일 뒤 자동으로 정리돼요.`)) return;
+    run(ad.id, () => deleteDoc(doc(db, 'ads', ad.id)));
   };
 
   const nextOrder = (ads || []).reduce((max, ad) => Math.max(max, ad.order ?? 0), 0) + 1;

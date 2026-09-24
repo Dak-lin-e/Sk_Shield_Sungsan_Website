@@ -69,7 +69,7 @@ function ImageInput({ id, value, onChange, folder }) {
           <input id={id} type="file" accept="image/jpeg,image/png,image/webp,image/gif" onChange={pick} className="sr-only" />
         </label>
       </div>
-      <p className="mt-1.5 text-xs text-muted-foreground">JPG·PNG·WEBP, {MAX_IMAGE_MB}MB 이하. 바꾼 뒤 '저장'을 눌러야 사이트에 반영돼요.</p>
+      <p className="mt-1.5 text-xs text-muted-foreground">JPG·PNG·WEBP, {MAX_IMAGE_MB}MB 이하. 바꾼 뒤 '저장'을 눌러야 사이트에 반영돼요. 이전 이미지는 30일 뒤 자동으로 정리돼요.</p>
       <Notice tone="error" className="mt-2">{error}</Notice>
     </div>
   );

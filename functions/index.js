@@ -1,10 +1,13 @@
 import { onDocumentCreated } from 'firebase-functions/v2/firestore';
+import { onSchedule } from 'firebase-functions/v2/scheduler';
 import { defineSecret, defineString } from 'firebase-functions/params';
 import { logger } from 'firebase-functions';
 import { initializeApp } from 'firebase-admin/app';
 import { FieldValue, getFirestore } from 'firebase-admin/firestore';
+import { getStorage } from 'firebase-admin/storage';
 import nodemailer from 'nodemailer';
 import { buildInquiryEmail, nextThrottleState } from './mail.js';
+import { GRACE_DAYS, runStorageCleanup } from './cleanup.js';
 
 initializeApp();
 const db = getFirestore();
@@ -90,5 +93,15 @@ export const notifyNewInquiry = onDocumentCreated(
       recipients: recipients.length,
       ...(isEmulator && { preview: JSON.parse(info.message) }),
     });
+  }
+);
+
+// 매일 새벽 4시(한국 시간): 광고·콘텐츠에서 더 이상 쓰이지 않는 업로드 이미지를
+// "처음 안 쓰이게 된 날"로부터 GRACE_DAYS(30일)가 지난 뒤 삭제한다.
+export const cleanupUnusedImages = onSchedule(
+  { schedule: 'every day 04:00', timeZone: 'Asia/Seoul', region: REGION, maxInstances: 1 },
+  async () => {
+    const summary = await runStorageCleanup({ db, bucket: getStorage().bucket() });
+    logger.info(`미사용 이미지 정리 완료 (유예 ${GRACE_DAYS}일)`, summary);
   }
 );
