@@ -3,12 +3,13 @@ import { Check } from 'lucide-react';
 import Section, { SectionHeading } from '../ui/Section';
 import Card from '../ui/Card';
 import { RevealGroup, RevealItem } from '../ui/Reveal';
+import { siteImage } from '../../lib/siteImages';
 
 const SERVICES = [
-  { title: '일반살균', image: '/image_file/일반살균.png', features: ['표면 살균 서비스', '접촉으로 인한 감염 예방', '월 1회 정기적 방문'] },
-  { title: '전문살균', image: '/image_file/전문살균.png', features: ['초 미립자 분무 방식(ULV)', '법정 전염병 살균 서비스', '공기중 전파에 대한 예방'] },
-  { title: '보행해충', image: '/image_file/보행해충.png', features: ['쥐, 바퀴벌레, 지네 퇴치', '모니터링 트랩 설치', '소독필증 발급', '월 1회 정기적 방문'] },
-  { title: '비래해충', image: '/image_file/비행해충.png', features: ['포충기 렌탈 서비스', '파리, 모기, 나방 등 제거', '번트랩 PC 확산형 커버 사용', '오스람 램프 사용'] },
+  { title: '일반살균', image: siteImage('일반살균.png'), features: ['표면 살균 서비스', '접촉으로 인한 감염 예방', '월 1회 정기적 방문'] },
+  { title: '전문살균', image: siteImage('전문살균.png'), features: ['초 미립자 분무 방식(ULV)', '법정 전염병 살균 서비스', '공기중 전파에 대한 예방'] },
+  { title: '보행해충', image: siteImage('보행해충.png'), features: ['쥐, 바퀴벌레, 지네 퇴치', '모니터링 트랩 설치', '소독필증 발급', '월 1회 정기적 방문'] },
+  { title: '비래해충', image: siteImage('비행해충.png'), features: ['포충기 렌탈 서비스', '파리, 모기, 나방 등 제거', '번트랩 PC 확산형 커버 사용', '오스람 램프 사용'] },
 ];
 
 export default function ServiceSection() {

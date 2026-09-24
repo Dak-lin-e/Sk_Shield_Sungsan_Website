@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import { useContact } from '../../content/ContentProvider';
 import { DarkTexture } from '../ui/Section';
+import { siteImage } from '../../lib/siteImages';
 
 const linkClass = 'rounded px-1 text-white/60 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent';
 
@@ -42,10 +43,10 @@ export default function Footer() {
 
           <div className="flex items-center gap-3">
             <div className="flex h-16 items-center rounded-xl bg-white px-4">
-              <img src="/image_file/sk 쉴더스 로고.webp" alt="SK 쉴더스 로고" className="h-10 object-contain" />
+              <img src={siteImage('sk 쉴더스 로고.webp')} alt="SK 쉴더스 로고" className="h-10 object-contain" />
             </div>
             <div className="flex h-16 items-center rounded-xl bg-white px-4">
-              <img src="/image_file/캡스.png" alt="캡스 로고" className="h-10 object-contain" />
+              <img src={siteImage('캡스.png')} alt="캡스 로고" className="h-10 object-contain" />
             </div>
           </div>
         </div>

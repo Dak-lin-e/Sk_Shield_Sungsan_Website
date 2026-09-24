@@ -3,10 +3,11 @@ import { Zap } from 'lucide-react';
 import Section, { SectionHeading } from '../ui/Section';
 import Card from '../ui/Card';
 import { Reveal, RevealGroup, RevealItem } from '../ui/Reveal';
+import { siteImage } from '../../lib/siteImages';
 
 const PRODUCTS = [
-  { name: '유통매장용', subtitle: 'Retail & Convenience', image: '/image_file/유통매장용.png' },
-  { name: '베리어프리 요식업용', subtitle: 'Full Service Floor', image: '/image_file/베리어프리.png' },
+  { name: '유통매장용', subtitle: 'Retail & Convenience', image: siteImage('유통매장용.png') },
+  { name: '베리어프리 요식업용', subtitle: 'Full Service Floor', image: siteImage('베리어프리.png') },
 ];
 
 export default function KioskSystem() {

@@ -1,3 +1,4 @@
+import { siteImage } from '../lib/siteImages';
 /**
  * 관리자 페이지에서 수정할 수 있는 사이트 콘텐츠 목록.
  * 각 페이지는 Firestore `siteContent/{id}` 문서 하나에 대응하고, 필드 key가 문서의 필드명이다.
@@ -50,12 +51,12 @@ export const CONTENT_SCHEMA = [
       ...hero({
         title: 'ADT 캡스\n*통합 보안* 시스템',
         description: '비교할수록 확실한 차이, ADT캡스 전문대리점에서 최적의 솔루션을 만나세요.',
-        image: '/image_file/출입보안2.jpg',
+        image: siteImage('출입보안2.jpg'),
       }),
       ...product(1, {
         name: '출동경비',
         description: '이상 신호 감지 시 최단거리 차량 출동',
-        image: '/image_file/출동경비2.png',
+        image: siteImage('출동경비2.png'),
         details: [
           '방문 맞춤컨설팅을 통한 보안설계 및 설치',
           'AI 이상신호 감지 및 알림',
@@ -67,19 +68,19 @@ export const CONTENT_SCHEMA = [
       ...product(2, {
         name: 'CCTV',
         description: '쉽고 빠른 영상 검색, 200만/500만 화소 고화질 AI CCTV',
-        image: '/image_file/cctv.jpg',
+        image: siteImage('cctv.jpg'),
         details: ['사람/차량 스마트 AI 검색', '영역 지정 침입탐지 및 검색', '침입 감지 알림 서비스', '피플카운팅 방문 분석 서비스'],
       }),
       ...product(3, {
         name: '출입통제',
         description: '지문, 카드, 얼굴 인식을 이용하여 출입/근태 출입관리',
-        image: '/image_file/출입통제2.png',
+        image: siteImage('출입통제2.png'),
         details: ['내,외부인원의 출입권한 통제 관리(일반문,자동문, E/L)', '내부직원을 위한 다양한 인증 방식', '외부인을 위한 다양한 호출 방식'],
       }),
       ...product(4, {
         name: '캡스홈 (가정용)',
         description: '현관문 앞 영상, 얼굴인식 AI, 집안상황 실시간 확인',
-        image: '/image_file/캡스홈2.png',
+        image: siteImage('캡스홈2.png'),
         details: ['현관 앞 상황실시간 영상 확인', '현관문 출입 내역 알림/확인', '현관 앞 배회자 감지 및 알림', '이상신호 감지시 대원 출동'],
       }),
     ],
@@ -91,7 +92,7 @@ export const CONTENT_SCHEMA = [
     fields: hero({
       title: '*무인 경비*\n솔루션',
       description: '무인매장에 최적화된 첨단 보안 서비스로 안심하고 운영하세요.\n24시간 빈틈없는 감시와 실시간 대응 시스템을 제공합니다.',
-      image: '/image_file/무인매장솔루션.png',
+      image: siteImage('무인매장솔루션.png'),
     }),
   },
   {
@@ -101,7 +102,7 @@ export const CONTENT_SCHEMA = [
     fields: hero({
       title: '캡스 키오스크의\n*특별함을 경험해보세요*',
       description: '직원 없이도 간편하게! 인건비와 응대 피로도를 줄이는\n똑똑한 결제 키오스크로 매장 운영의 효율을 높이세요.',
-      image: '/image_file/키오스크배경1.png',
+      image: siteImage('키오스크배경1.png'),
     }),
   },
   {
@@ -112,7 +113,7 @@ export const CONTENT_SCHEMA = [
       ...hero({
         title: '캡스만의 *특별함*을\n경험해보세요',
         description: '태블릿을 통해 테이블에서 직접 주문받고, 주문 내역을 실시간으로 관리하는 효율적인 스마트 오더 시스템입니다.',
-        image: '/image_file/스마트오더.png',
+        image: siteImage('스마트오더.png'),
       }),
       ...cta({
         title: '지금 바로 *전문가와 상담*하세요',
@@ -128,7 +129,7 @@ export const CONTENT_SCHEMA = [
       ...hero({
         title: '사업장 청결관리\n전문 *방역·방제* 솔루션',
         description: 'ADT 캡스 클린케어는 차별화된 전문 기술력과\n체계적인 살균·방역으로 완벽한 청정 공간을 약속합니다.',
-        image: '/image_file/클린케어 로고 이미지.png',
+        image: siteImage('클린케어 로고 이미지.png'),
       }),
       ...cta({
         title: '지금 우리 사업장에 딱 맞는\n*방역 플랜*을 확인하세요',
@@ -144,7 +145,7 @@ export const CONTENT_SCHEMA = [
       ...hero({
         title: '민감정보 유출을 완벽히 차단하는\n*맞춤형 정보보안 솔루션*',
         description: 'ADT Caps 사이버가드와 함께라면, 보안 아키텍처를 통해\n기업의 소중한 자산과 데이터를 24시간 보호합니다.',
-        image: '/image_file/사이버가드배경1.png',
+        image: siteImage('사이버가드배경1.png'),
       }),
       ...cta({
         title: '안전한 디지털 환경을 위한\n*최고의 파트너*',

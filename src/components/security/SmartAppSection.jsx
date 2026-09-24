@@ -2,6 +2,7 @@ import React from 'react';
 import { AlertTriangle, Clock, FileText, MapPin, Users, Zap } from 'lucide-react';
 import Section, { SectionHeading } from '../ui/Section';
 import { Reveal, RevealGroup, RevealItem } from '../ui/Reveal';
+import { siteImage } from '../../lib/siteImages';
 
 const APP_FEATURES = [
   { icon: Clock, text: '실시간(24시간) 조회' },
@@ -51,7 +52,7 @@ export default function SmartAppSection() {
           <div className="relative animate-float">
             <div className="rounded-[2.5rem] border border-white/15 bg-white/10 p-2.5 shadow-xl backdrop-blur">
               <div className="h-[26rem] w-[13rem] overflow-hidden rounded-[2rem] bg-white">
-                <img src="/image_file/무인매장앱1.png" alt="무인매장 앱 화면" className="h-full w-full object-cover" />
+                <img src={siteImage('무인매장앱1.png')} alt="무인매장 앱 화면" className="h-full w-full object-cover" />
               </div>
             </div>
           </div>

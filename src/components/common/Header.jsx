@@ -5,6 +5,7 @@ import { useContact } from '../../content/ContentProvider';
 import { cn } from '../../lib/cn';
 import Button from '../ui/Button';
 import { ConsultActions } from '../ui/Consult';
+import { siteImage } from '../../lib/siteImages';
 
 const NAV_ITEMS = [
   { to: '/security', label: 'ADT캡스 무인경비' },
@@ -27,7 +28,7 @@ function KakaoButton({ className }) {
         className
       )}
     >
-      <img src="/image_file/카톡.png" alt="" className="h-full w-full object-cover" />
+      <img src={siteImage('카톡.png')} alt="" className="h-full w-full object-cover" />
     </a>
   );
 }
@@ -58,7 +59,7 @@ export default function Header() {
     >
       <nav className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-5 sm:px-6 lg:h-[72px]" aria-label="주요 메뉴">
         <Link to="/" className="flex shrink-0 items-center gap-1 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
-          <img src="/image_file/헤더-로고.jpg" alt="ADT 캡스" className="h-11 w-auto object-contain mix-blend-multiply md:h-12" />
+          <img src={siteImage('헤더-로고.jpg')} alt="ADT 캡스" className="h-11 w-auto object-contain mix-blend-multiply md:h-12" />
           <span className="whitespace-nowrap text-base font-extrabold tracking-tight text-logo md:text-lg">성산대리점</span>
         </Link>
 

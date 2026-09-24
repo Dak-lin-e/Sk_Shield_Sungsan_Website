@@ -2,6 +2,7 @@ import React from 'react';
 import { Check } from 'lucide-react';
 import Section, { SectionHeading } from '../ui/Section';
 import { Reveal, RevealGroup, RevealItem } from '../ui/Reveal';
+import { siteImage } from '../../lib/siteImages';
 
 const FEATURES = [
   '주문내역이 주방/홀 프린터에 전송되고 POS와 연동되어 주문누락 예방 및 매장 테이블 회전율 상승 가능',
@@ -46,7 +47,7 @@ export default function SmartOrderSystem() {
             <div className="relative flex items-end justify-center gap-4 sm:gap-6">
               <div className="w-44 animate-float rounded-2xl bg-foreground p-2 shadow-xl sm:w-52">
                 <div className="h-52 overflow-hidden rounded-xl bg-white sm:h-60">
-                  <img src="/image_file/스마트오더메뉴.png" alt="테이블오더 화면" className="h-full w-full object-contain" />
+                  <img src={siteImage('스마트오더메뉴.png')} alt="테이블오더 화면" className="h-full w-full object-contain" />
                 </div>
               </div>
 

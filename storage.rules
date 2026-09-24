@@ -30,6 +30,11 @@ service firebase.storage {
       allow delete: if isAdmin();
     }
 
+    // 사이트 기본 이미지: 콘솔에서 버킷 최상위에 올린 파일. 누구나 보기(get)만 가능, 목록 조회/쓰기는 차단.
+    match /{fileName} {
+      allow get: if true;
+    }
+
     // 그 외 경로는 모두 차단
     match /{allPaths=**} {
       allow read, write: if false;
