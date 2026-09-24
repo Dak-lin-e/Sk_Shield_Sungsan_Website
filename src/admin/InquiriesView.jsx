@@ -23,7 +23,8 @@ const formatDate = timestamp =>
     ? new Intl.DateTimeFormat('ko-KR', { month: 'short', day: 'numeric', weekday: 'short', hour: '2-digit', minute: '2-digit' }).format(timestamp.toDate())
     : '-';
 
-const formatPhone = digits => digits.replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, '$1-$2-$3');
+// 서울(02)만 지역번호가 두 자리다.
+const formatPhone = digits => digits.replace(/^(02)(\d{3,4})(\d{4})$/, '$1-$2-$3').replace(/^(0\d{2})(\d{3,4})(\d{4})$/, '$1-$2-$3');
 
 export default function InquiriesView() {
   const [items, setItems] = useState(null);

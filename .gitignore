@@ -128,3 +128,11 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Firebase
+functions/.env*
+functions/.secret*
+.firebase/
+firestore-debug.log
+firebase-debug.log
+ui-debug.log
