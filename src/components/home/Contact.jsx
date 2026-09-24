@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowRight, CheckCircle, ChevronDown, Loader2, Phone } from 'lucide-react';
-import { CONTACT } from '../../constants/contact';
+import { useContact } from '../../content/ContentProvider';
+import { loadFirestore } from '../../lib/loadFirestore';
 import Section from '../ui/Section';
 import SectionLabel from '../ui/SectionLabel';
 import Button from '../ui/Button';
@@ -13,6 +14,7 @@ const inputClass =
   'h-12 w-full rounded-xl border border-border bg-muted/40 px-4 text-[15px] text-foreground transition-colors placeholder:text-muted-foreground/60 hover:border-accent/30 focus:border-accent focus:bg-card focus:outline-none focus:ring-2 focus:ring-accent/20';
 
 export default function ContactSection() {
+  const contact = useContact();
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -43,33 +45,30 @@ export default function ContactSection() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // 허니팟: 사람에게 보이지 않는 칸이 채워져 있으면 봇으로 보고 저장하지 않는다.
+    if (e.currentTarget.elements['bot-field']?.value) {
+      setSubmitStatus('success');
+      return;
+    }
+
     setSubmitStatus('loading');
-
-    const formDataToSend = new FormData();
-    formDataToSend.append('form-name', 'contact');
-    formDataToSend.append('name', formData.name);
-    formDataToSend.append('phone', formData.phone);
-    formDataToSend.append('region', formData.region);
-    formDataToSend.append('privacy', agreements.privacy);
-    formDataToSend.append('marketing', agreements.marketing);
-    formDataToSend.append('sms', agreements.sms);
-
     try {
-      const response = await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formDataToSend).toString(),
+      const { addDoc, collection, db, serverTimestamp } = await loadFirestore();
+      await addDoc(collection(db, 'inquiries'), {
+        name: formData.name.trim(),
+        phone: formData.phone.replace(/[^0-9]/g, ''),
+        region: formData.region,
+        privacy: agreements.privacy,
+        marketing: agreements.marketing,
+        sms: agreements.sms,
+        status: 'new',
+        createdAt: serverTimestamp(),
       });
-
-      if (response.ok) {
-        setSubmitStatus('success');
-        setFormData({ name: '', phone: '', region: '' });
-        setAgreements({ privacy: false, marketing: false, sms: false });
-        setTimeout(() => setSubmitStatus('idle'), 5000);
-      } else {
-        setSubmitStatus('error');
-        setTimeout(() => setSubmitStatus('idle'), 3000);
-      }
+      setSubmitStatus('success');
+      setFormData({ name: '', phone: '', region: '' });
+      setAgreements({ privacy: false, marketing: false, sms: false });
+      setTimeout(() => setSubmitStatus('idle'), 5000);
     } catch (error) {
       console.error('Form submission error:', error);
       setSubmitStatus('error');
@@ -96,13 +95,13 @@ export default function ContactSection() {
           </p>
 
           <a
-            href={CONTACT.phoneHref}
+            href={contact.phoneHref}
             className="group mt-10 flex max-w-sm items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-white/25 hover:bg-white/10"
           >
             <IconTile icon={Phone} />
             <span className="flex-1">
               <span className="block text-sm text-white/60">전화상담 연결</span>
-              <span className="font-display block text-2xl text-white md:text-3xl">{CONTACT.phoneLabel}</span>
+              <span className="font-display block text-2xl text-white md:text-3xl">{contact.phoneLabel}</span>
             </span>
             <ArrowRight className="h-5 w-5 text-white/50 transition-transform duration-200 group-hover:translate-x-1 group-hover:text-white" aria-hidden="true" />
           </a>
@@ -111,23 +110,19 @@ export default function ContactSection() {
         <Reveal delay={0.1}>
           <form
             name="contact"
-            method="POST"
-            data-netlify="true"
-            netlify-honeypot="bot-field"
             onSubmit={handleSubmit}
             className="rounded-2xl bg-card p-6 text-foreground shadow-xl sm:p-8"
           >
-            <input type="hidden" name="form-name" value="contact" />
-            <p className="hidden">
+            <p className="hidden" aria-hidden="true">
               <label>
-                Don't fill this out if you're human: <input name="bot-field" />
+                Don't fill this out if you're human: <input name="bot-field" tabIndex={-1} autoComplete="off" />
               </label>
             </p>
 
             <div className="grid gap-4 sm:grid-cols-2">
               <label className="block">
                 <span className="mb-1.5 block text-sm font-medium">이름</span>
-                <input type="text" name="name" placeholder="홍길동" value={formData.name} onChange={handleChange} className={inputClass} required />
+                <input type="text" name="name" placeholder="홍길동" maxLength={30} value={formData.name} onChange={handleChange} className={inputClass} required />
               </label>
               <label className="block">
                 <span className="mb-1.5 block text-sm font-medium">전화번호</span>
@@ -136,6 +131,8 @@ export default function ContactSection() {
                   name="phone"
                   placeholder="'-' 없이 입력"
                   inputMode="numeric"
+                  pattern="0[0-9]{1,2}-?[0-9]{3,4}-?[0-9]{4}"
+                  title="예: 01012345678"
                   value={formData.phone}
                   onChange={handleChange}
                   className={inputClass}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Menu, Phone, X } from 'lucide-react';
-import { CONTACT } from '../../constants/contact';
+import { useContact } from '../../content/ContentProvider';
 import { cn } from '../../lib/cn';
 import Button from '../ui/Button';
 import { ConsultActions } from '../ui/Consult';
@@ -15,9 +15,10 @@ const NAV_ITEMS = [
 ];
 
 function KakaoButton({ className }) {
+  const contact = useContact();
   return (
     <a
-      href={CONTACT.kakaoUrl}
+      href={contact.kakaoUrl}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="카카오톡 상담"
@@ -32,6 +33,7 @@ function KakaoButton({ className }) {
 }
 
 export default function Header() {
+  const contact = useContact();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { pathname } = useLocation();
@@ -79,8 +81,8 @@ export default function Header() {
         </div>
 
         <div className="hidden shrink-0 items-center gap-3 lg:flex">
-          <Button href={CONTACT.phoneHref} icon={Phone} className="h-11 px-5">
-            {CONTACT.phoneLabel}
+          <Button href={contact.phoneHref} icon={Phone} className="h-11 px-5">
+            {contact.phoneLabel}
           </Button>
           <KakaoButton />
         </div>

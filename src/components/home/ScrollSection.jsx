@@ -1,6 +1,6 @@
 import React from 'react';
 import { Gift, Phone, Users } from 'lucide-react';
-import { CONTACT } from '../../constants/contact';
+import { useContact } from '../../content/ContentProvider';
 import Section, { SectionHeading } from '../ui/Section';
 import Card, { IconTile } from '../ui/Card';
 import Button from '../ui/Button';
@@ -9,6 +9,7 @@ import { RevealGroup, RevealItem } from '../ui/Reveal';
 const SERVICES = ['무인경비', 'CCTV', '무인매장솔루션', '테이블오더', '서빙로봇', '키오스크', '포스', '카드체크기'];
 
 export default function ScrollSection() {
+  const contact = useContact();
   return (
     <Section id="scroll-section">
       <SectionHeading
@@ -37,7 +38,7 @@ export default function ScrollSection() {
             <div className="mt-8 grid gap-6 sm:grid-cols-2">
               <div className="rounded-xl bg-muted p-5">
                 <p className="text-sm text-muted-foreground">성산대리점</p>
-                <p className="font-display mt-1 text-3xl text-foreground md:text-4xl">{CONTACT.phoneLabel}</p>
+                <p className="font-display mt-1 text-3xl text-foreground md:text-4xl">{contact.phoneLabel}</p>
               </div>
               <div className="rounded-xl bg-accent/5 p-5">
                 <p className="text-sm text-muted-foreground">대리점 접수건 계약 후</p>
@@ -53,7 +54,7 @@ export default function ScrollSection() {
               <span className="font-semibold text-foreground">ADT캡스 전문대리점에서 최적의 솔루션을 만나세요.</span>
             </p>
 
-            <Button href={CONTACT.phoneHref} size="lg" icon={Phone} arrow className="mt-8 w-full sm:w-auto">
+            <Button href={contact.phoneHref} size="lg" icon={Phone} arrow className="mt-8 w-full sm:w-auto">
               지금 전화 연결하기
             </Button>
           </Card>

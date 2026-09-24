@@ -1,0 +1,36 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    // 관리자 판별은 Firestore `admins/{이메일(소문자)}` 문서로 한다 (교차 서비스 규칙).
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email_verified == true
+        && firestore.exists(/databases/(default)/documents/admins/$(request.auth.token.email.lower()));
+    }
+
+    function isImageUnder5MB() {
+      return request.resource.size < 5 * 1024 * 1024
+        && request.resource.contentType.matches('image/(jpeg|png|webp|gif)');
+    }
+
+    // 광고 이미지, 사이트 콘텐츠 이미지: 누구나 보기, 관리자만 올리기/지우기
+    match /ads/{fileName} {
+      allow read: if true;
+      allow create, update: if isAdmin() && isImageUnder5MB();
+      allow delete: if isAdmin();
+    }
+
+    match /content/{pageId}/{fileName} {
+      allow read: if true;
+      allow create, update: if isAdmin() && isImageUnder5MB();
+      allow delete: if isAdmin();
+    }
+
+    // 그 외 경로는 모두 차단
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

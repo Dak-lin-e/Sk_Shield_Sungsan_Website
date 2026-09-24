@@ -1,0 +1,63 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // 관리자: 구글이 인증한 이메일로 Firestore `admins/{이메일(소문자)}` 문서가 있는 사용자
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email_verified == true
+        && exists(/databases/$(database)/documents/admins/$(request.auth.token.email.lower()));
+    }
+
+    function isShortString(value, min, max) {
+      return value is string && value.size() >= min && value.size() <= max;
+    }
+
+    // 관리자 목록: 본인 이메일 문서만 읽을 수 있고, 추가/삭제는 Firebase 콘솔에서만 한다.
+    match /admins/{email} {
+      allow read: if request.auth != null
+        && request.auth.token.email_verified == true
+        && request.auth.token.email.lower() == email;
+      allow write: if false;
+    }
+
+    // 사이트 문구/이미지: 누구나 읽고, 관리자만 수정
+    match /siteContent/{pageId} {
+      allow read: if true;
+      allow write: if isAdmin()
+        && pageId in ['contact', 'home', 'security', 'kiosk', 'tableOrder', 'cleanCare', 'cyberGuard'];
+    }
+
+    // 광고 팝업: 방문자는 노출 켜진 광고만 조회, 관리자는 전체 관리
+    match /ads/{adId} {
+      allow read: if resource.data.active == true || isAdmin();
+      allow create, update: if isAdmin()
+        && isShortString(request.resource.data.title, 1, 80)
+        && request.resource.data.imageUrl is string
+        && request.resource.data.imageUrl.matches('^(https://|http://(127[.]0[.]0[.]1|localhost):[0-9]+/).*')
+        && request.resource.data.active is bool
+        && (request.resource.data.linkUrl == '' || request.resource.data.linkUrl.matches('^https?://.*'));
+      allow delete: if isAdmin();
+    }
+
+    // 상담 신청: 방문자는 형식에 맞는 신규 신청 "작성"만, 조회/수정/삭제는 관리자만
+    match /inquiries/{inquiryId} {
+      allow create: if request.resource.data.keys().hasOnly(['name', 'phone', 'region', 'privacy', 'marketing', 'sms', 'status', 'createdAt'])
+        && request.resource.data.keys().hasAll(['name', 'phone', 'region', 'privacy', 'marketing', 'sms', 'status', 'createdAt'])
+        && isShortString(request.resource.data.name, 1, 30)
+        && request.resource.data.phone is string
+        && request.resource.data.phone.matches('^0[0-9]{8,10}$')
+        && isShortString(request.resource.data.region, 1, 10)
+        && request.resource.data.privacy == true
+        && request.resource.data.marketing is bool
+        && request.resource.data.sms is bool
+        && request.resource.data.status == 'new'
+        && request.resource.data.createdAt == request.time;
+      allow read, delete: if isAdmin();
+      allow update: if isAdmin()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status'])
+        && request.resource.data.status in ['new', 'contacted'];
+    }
+  }
+}

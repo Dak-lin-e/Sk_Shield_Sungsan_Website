@@ -1,29 +1,21 @@
 import React from 'react';
 import { Clock, Lock } from 'lucide-react';
 import PageHero, { HeroVisual } from '../ui/PageHero';
+import { useContent } from '../../content/ContentProvider';
+import RichText from '../../content/RichText';
 
 export default function CyberHeroSection() {
+  const content = useContent('cyberGuard');
   return (
     <PageHero
       tone="dark"
       label="Enterprise Security Solution"
-      title={
-        <>
-          민감정보 유출을 완벽히 차단하는
-          <br />
-          <span className="text-gradient-light">맞춤형 정보보안 솔루션</span>
-        </>
-      }
-      description={
-        <>
-          ADT Caps 사이버가드와 함께라면, 보안 아키텍처를 통해
-          <br className="hidden sm:block" /> 기업의 소중한 자산과 데이터를 24시간 보호합니다.
-        </>
-      }
+      title={<RichText value={content.heroTitle} tone="dark" />}
+      description={<RichText value={content.heroDescription} softBreaks />}
       visual={
         <HeroVisual
           tone="dark"
-          src="/image_file/사이버가드배경1.png"
+          src={content.heroImage}
           alt="ADT Caps 사이버가드"
           chips={[
             { icon: Clock, title: '24/7 실시간 관제', sub: '365일 모니터링' },

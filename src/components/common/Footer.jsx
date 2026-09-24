@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
-import { CONTACT } from '../../constants/contact';
+import { useContact } from '../../content/ContentProvider';
 import { DarkTexture } from '../ui/Section';
 
 const linkClass = 'rounded px-1 text-white/60 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent';
 
 export default function Footer() {
+  const contact = useContact();
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
 
   useEffect(() => {
@@ -32,7 +33,7 @@ export default function Footer() {
               <dd className="text-white/80">189-01-03869</dd>
               <dt className="text-white/50">전화</dt>
               <dd>
-                <a href={CONTACT.phoneHref} className="text-white/80 hover:text-white">{CONTACT.phoneLabel}</a>
+                <a href={contact.phoneHref} className="text-white/80 hover:text-white">{contact.phoneLabel}</a>
               </dd>
               <dt className="text-white/50">이메일</dt>
               <dd className="text-white/80">phs7730@hanmail.net</dd>
@@ -60,7 +61,7 @@ export default function Footer() {
             </button>
             <a href="#" className={linkClass}>이용약관</a>
             <a href="#" className={linkClass}>이용안내</a>
-            <a href="#" className={linkClass}>관리자</a>
+            <Link to="/admin" className={linkClass}>관리자</Link>
           </nav>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { MessageCircle, Phone } from 'lucide-react';
-import { CONTACT } from '../../constants/contact';
+import { useContact } from '../../content/ContentProvider';
 import { cn } from '../../lib/cn';
 import Button from './Button';
 import Section, { SectionHeading } from './Section';
@@ -8,14 +8,15 @@ import { Reveal } from './Reveal';
 
 /** 카카오톡 상담 + 전화 상담 버튼 묶음. 모바일에서는 세로로 꽉 차게 쌓인다. */
 export function ConsultActions({ tone = 'light', size = 'lg', kakaoLabel = '간편 상담 신청', className }) {
+  const contact = useContact();
   const dark = tone === 'dark';
   return (
     <div className={cn('flex flex-col gap-3 sm:flex-row sm:gap-4', className)}>
-      <Button href={CONTACT.kakaoUrl} size={size} icon={MessageCircle} arrow className="w-full sm:w-auto">
+      <Button href={contact.kakaoUrl} size={size} icon={MessageCircle} arrow className="w-full sm:w-auto">
         {kakaoLabel}
       </Button>
-      <Button href={CONTACT.phoneHref} size={size} variant={dark ? 'inverse' : 'secondary'} icon={Phone} className="w-full sm:w-auto">
-        {CONTACT.phoneLabel}
+      <Button href={contact.phoneHref} size={size} variant={dark ? 'inverse' : 'secondary'} icon={Phone} className="w-full sm:w-auto">
+        {contact.phoneLabel}
       </Button>
     </div>
   );

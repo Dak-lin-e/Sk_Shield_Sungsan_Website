@@ -1,27 +1,19 @@
 import React from 'react';
 import { CreditCard, Headphones } from 'lucide-react';
 import PageHero, { HeroVisual } from '../ui/PageHero';
+import { useContent } from '../../content/ContentProvider';
+import RichText from '../../content/RichText';
 
 export default function KioskHero() {
+  const content = useContent('kiosk');
   return (
     <PageHero
       label="Professional Kiosk"
-      title={
-        <>
-          캡스 키오스크의
-          <br />
-          <span className="text-gradient">특별함을 경험해보세요</span>
-        </>
-      }
-      description={
-        <>
-          직원 없이도 간편하게! 인건비와 응대 피로도를 줄이는
-          <br className="hidden sm:block" /> 똑똑한 결제 키오스크로 매장 운영의 효율을 높이세요.
-        </>
-      }
+      title={<RichText value={content.heroTitle} />}
+      description={<RichText value={content.heroDescription} softBreaks />}
       visual={
         <HeroVisual
-          src="/image_file/키오스크배경1.png"
+          src={content.heroImage}
           alt="ADT CAPS 키오스크"
           fit="contain"
           chips={[

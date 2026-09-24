@@ -3,6 +3,8 @@ import { ShieldCheck, Sparkles } from 'lucide-react';
 import PageHero, { HeroVisual } from '../ui/PageHero';
 import { DarkTexture } from '../ui/Section';
 import { RevealGroup, RevealItem } from '../ui/Reveal';
+import { useContent } from '../../content/ContentProvider';
+import RichText from '../../content/RichText';
 
 const STATS = [
   { value: '99.9%', label: '살균 소독력' },
@@ -12,26 +14,16 @@ const STATS = [
 ];
 
 export default function CleanHero() {
+  const content = useContent('cleanCare');
   return (
     <>
       <PageHero
         label="Professional Hygiene Solution"
-        title={
-          <>
-            사업장 청결관리
-            <br />
-            전문 <span className="text-gradient">방역·방제</span> 솔루션
-          </>
-        }
-        description={
-          <>
-            ADT 캡스 클린케어는 차별화된 전문 기술력과
-            <br className="hidden sm:block" /> 체계적인 살균·방역으로 완벽한 청정 공간을 약속합니다.
-          </>
-        }
+        title={<RichText value={content.heroTitle} />}
+        description={<RichText value={content.heroDescription} softBreaks />}
         visual={
           <HeroVisual
-            src="/image_file/클린케어 로고 이미지.png"
+            src={content.heroImage}
             alt="ADT 캡스 클린케어"
             chips={[
               { icon: Sparkles, title: '살균 소독력 99.9%', sub: '전문 살균 서비스' },
